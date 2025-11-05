@@ -2,6 +2,21 @@
 
 A modern, responsive website for TIGER HOSPITALITY featuring premium animations, interactive elements, and accessibility features.
 
+## Project Structure
+
+```
+thg-website/
+├── css/
+│   └── style.css          # Main stylesheet
+├── js/
+│   └── main.js            # Main JavaScript file
+├── images/                # Image assets (add your images here)
+├── assets/                # Other assets (fonts, icons, etc.)
+├── index.html             # Main HTML file
+├── README.md              # Project documentation
+└── .gitignore             # Git ignore rules
+```
+
 ## Features
 
 - **Animated Loading Screen** - TIGER HOSPITALITY logo reveal animation

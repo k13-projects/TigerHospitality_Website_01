@@ -1,0 +1,28 @@
+# Environment variables
+.env
+.env.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.sublime-*
+
+# Backup files
+*-old.html
+*.bak
+*.backup
+
+# Logs
+logs/
+*.log
+
+# Node modules (if using npm/yarn)
+node_modules/
+
+# Build outputs
+dist/
+build/
