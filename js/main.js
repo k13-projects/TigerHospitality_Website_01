@@ -82,7 +82,7 @@ window.addEventListener('load', initHeroSlider);
 
 
 
-// ===== Intersection Observer for Divider Lines =====
+// ===== Intersection Observer for Divider Lines with Reverse Animation =====
 const observerOptions = {
     threshold: 0.5,
     rootMargin: '0px'
@@ -90,12 +90,18 @@ const observerOptions = {
 
 const lineObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            const leftLine = entry.target.querySelector('.divider-line.left');
-            const rightLine = entry.target.querySelector('.divider-line.right');
-            if (leftLine && rightLine) {
+        const leftLine = entry.target.querySelector('.divider-line.left');
+        const rightLine = entry.target.querySelector('.divider-line.right');
+
+        if (leftLine && rightLine) {
+            if (entry.isIntersecting) {
+                // Scrolling into view - animate in
                 leftLine.classList.add('animate');
                 rightLine.classList.add('animate');
+            } else {
+                // Scrolling out of view - animate out (reverse)
+                leftLine.classList.remove('animate');
+                rightLine.classList.remove('animate');
             }
         }
     });
@@ -157,24 +163,6 @@ const statsGrid = document.querySelector('.stats-grid');
 if (statsGrid) {
     statsObserver.observe(statsGrid);
 }
-
-// ===== Custom Cursor =====
-const cursor = document.getElementById('customCursor');
-const interactiveElements = document.querySelectorAll('a, button, .concept-card, .collage-item');
-
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-interactiveElements.forEach(element => {
-    element.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
-    });
-    element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
-    });
-});
 
 // ===== Contact Form Validation and Submission =====
 const contactForm = document.getElementById('contactForm');
