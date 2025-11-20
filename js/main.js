@@ -56,7 +56,11 @@ document.addEventListener('keydown', function (e) {
 // ===== Navbar Scroll Effect =====
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 100) {
+    const heroSection = document.querySelector('.hero-container');
+    const heroHeight = heroSection ? heroSection.offsetHeight : window.innerHeight;
+    const scrollTrigger = heroHeight * 0.9; // 90% of hero height
+
+    if (window.scrollY > scrollTrigger) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');

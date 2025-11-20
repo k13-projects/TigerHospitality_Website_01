@@ -90,14 +90,12 @@ nav {
     padding: 25px 50px;
     z-index: 1000;
     transition: all 0.4s ease;
-    mix-blend-mode: difference;
 }
 
 nav.scrolled {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
     padding: 15px 50px;
-    mix-blend-mode: normal;
 }
 
 .nav-container {
@@ -109,11 +107,20 @@ nav.scrolled {
 }
 
 .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--soft-white);
-    letter-spacing: 4px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 75px;
+    width: auto;
+    transition: opacity 0.3s ease;
+    filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.5));
+}
+
+.logo-image:hover {
+    opacity: 0.8;
 }
 
 .nav-links {
@@ -125,12 +132,13 @@ nav.scrolled {
 .nav-links a {
     color: var(--soft-white);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 19.5px;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: color 0.3s ease;
     position: relative;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links a::after {
@@ -331,13 +339,13 @@ nav.scrolled {
 
 .hero-subtitle {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s ease-out 2.7s forwards;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeInUp {
