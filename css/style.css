@@ -617,19 +617,111 @@ nav.scrolled {
 }
 
 .concept-card:nth-child(1) .card-image {
-    background: url('https://images.unsplash.com/photo-1514933651103-005eec06c04b?w=600&q=80');
+    background-image: url('../assets/cards/Lobster Lab 2 - 5.25.23-20.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(2) .card-image {
-    background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=600&q=80');
+    background-image: url('../assets/cards/cosmos 1-49.jpg');
+    background-size: 120%;
+    background-position: center 60%;
+    background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(3) .card-image {
-    background: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80');
+    background-image: url('../assets/cards/La Vida.jpg');
+    background-size: 120%;
+    background-position: center 65%;
+    background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(4) .card-image {
-    background: url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?w=600&q=80');
+    background-image: url('../assets/cards/Good Enough.png');
+    background-size: 140%;
+    background-position: center 75%;
+    background-repeat: no-repeat;
+}
+
+.concept-card:nth-child(5) .card-image {
+    background-image: url('../assets/cards/WINDMILL FOOD HALL LOGO (2).png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+.concept-card:nth-child(6) .card-image {
+    background-image: url('../assets/cards/MIRAMAR FOODHALL LOGO (1).png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+.concept-card:nth-child(7) .card-image {
+    background-image: url('../assets/cards/STATION8 LOCKUP.png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+.concept-card:nth-child(8) .card-image {
+    background-image: url('../assets/cards/WINDMILL FOOD HALL LOGO (2).png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+/* Food Halls Subsection - Override with logos */
+#food-halls .concept-card:nth-child(1) .card-image {
+    background-image: url('../assets/cards/WINDMILL FOOD HALL LOGO (2).png');
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+#food-halls .concept-card:nth-child(2) .card-image {
+    background-image: url('../assets/cards/MIRAMAR FOODHALL LOGO (1).png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+#food-halls .concept-card:nth-child(3) .card-image {
+    background-image: url('../assets/cards/STATION8 LOCKUP.png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+#food-halls .concept-card:nth-child(4) .card-image {
+    background-image: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+#food-halls .concept-card:nth-child(4) .card-image::before {
+    content: 'COMING SOON';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 8px;
+    opacity: 0.3;
 }
 
 .card-content {
@@ -1007,6 +1099,59 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     filter: grayscale(30%);
+}
+
+/* Leaflet Map Custom Styles */
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--luxury-gold);
+}
+
+.leaflet-popup-content {
+    margin: 15px;
+}
+
+.leaflet-popup-tip {
+    background: white;
+}
+
+.custom-marker-logo {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-marker-logo:hover {
+    transform: scale(1.15) translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.custom-marker-logo > div {
+    transition: all 0.3s ease;
+}
+
+.custom-marker-logo:hover > div {
+    border-color: #fafafa;
+    box-shadow: 0 6px 20px rgba(201, 169, 97, 0.6);
+}
+
+/* Leaflet controls styling to match theme */
+.leaflet-control-zoom a {
+    background-color: var(--primary-black) !important;
+    color: var(--luxury-gold) !important;
+    border: 1px solid var(--luxury-gold) !important;
+    transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background-color: var(--luxury-gold) !important;
+    color: var(--primary-black) !important;
+    transform: scale(1.05);
+}
+
+.leaflet-bar {
+    border: none !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Footer */

@@ -1,0 +1,24 @@
+{
+  "name": "tiger-hospitality-website",
+  "version": "1.0.0",
+  "description": "TIGER HOSPITALITY Website Server",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "keywords": [
+    "tiger-hospitality",
+    "website",
+    "server"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
+}
+
+
+
+
