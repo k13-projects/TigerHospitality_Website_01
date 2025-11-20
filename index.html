@@ -17,6 +17,11 @@
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 
+    <!-- Leaflet CSS for Interactive Maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin=""/>
+
     <!-- Favicon (optional) -->
     <!-- <link rel="icon" type="image/png" href="assets/favicon.png"> -->
 </head>
@@ -69,13 +74,22 @@
     <section class="hero-container" id="home">
         <div class="hero-slider" id="heroSlider">
             <div class="hero-slide active"
-                style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80')">
+                style="background-image: url('assets/hero/WindmillFoodery_Bar_1.webp')">
             </div>
             <div class="hero-slide"
-                style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920&q=80')">
+                style="background-image: url('assets/hero/Cosmos.jpg')">
             </div>
             <div class="hero-slide"
-                style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1920&q=80')">
+                style="background-image: url('assets/hero/Lobster Lab 2.jpg')">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('assets/hero/Good Enough.png')">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('assets/hero/La Vida.jpg')">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('assets/hero/WindmillFoodery_70.webp')">
             </div>
         </div>
         <div class="hero-content">
@@ -589,10 +603,15 @@
         </div>
     </footer>
 
+    <!-- Leaflet JS for Interactive Maps -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+        crossorigin=""></script>
+
     <!-- JavaScript -->
     <script src="js/main.js"></script>
 
-    <!-- Google Maps API (Uncomment and add your API key to enable interactive maps) -->
+    <!-- Google Maps API (No longer needed - using Leaflet instead) -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> -->
 </body>
 
