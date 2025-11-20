@@ -1009,6 +1009,59 @@ nav.scrolled {
     filter: grayscale(30%);
 }
 
+/* Leaflet Map Custom Styles */
+.leaflet-popup-content-wrapper {
+    border-radius: 12px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--luxury-gold);
+}
+
+.leaflet-popup-content {
+    margin: 15px;
+}
+
+.leaflet-popup-tip {
+    background: white;
+}
+
+.custom-marker-logo {
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.custom-marker-logo:hover {
+    transform: scale(1.15) translateY(-3px);
+    filter: brightness(1.1);
+}
+
+.custom-marker-logo > div {
+    transition: all 0.3s ease;
+}
+
+.custom-marker-logo:hover > div {
+    border-color: #fafafa;
+    box-shadow: 0 6px 20px rgba(201, 169, 97, 0.6);
+}
+
+/* Leaflet controls styling to match theme */
+.leaflet-control-zoom a {
+    background-color: var(--primary-black) !important;
+    color: var(--luxury-gold) !important;
+    border: 1px solid var(--luxury-gold) !important;
+    transition: all 0.3s ease !important;
+}
+
+.leaflet-control-zoom a:hover {
+    background-color: var(--luxury-gold) !important;
+    color: var(--primary-black) !important;
+    transform: scale(1.05);
+}
+
+.leaflet-bar {
+    border: none !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}
+
 /* Footer */
 footer {
     background: var(--primary-black);
