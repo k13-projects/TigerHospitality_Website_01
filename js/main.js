@@ -4,14 +4,14 @@
  */
 
 // ===== Loading Screen =====
-window.addEventListener('load', function() {
-    // Wait for bottom-to-top reveal (1.5s) + 1 second pause
+window.addEventListener('load', function () {
+    // Wait for bottom-to-top reveal (2s) + 1 second pause
     setTimeout(() => {
         document.getElementById('loadingScreen').classList.add('fade-out');
         setTimeout(() => {
             document.getElementById('loadingScreen').style.display = 'none';
         }, 800);
-    }, 2500); // 1500ms for reveal + 1000ms pause
+    }, 2100); // 2000ms for reveal + 100ms pause
 });
 
 // ===== Mobile Menu Toggle =====
@@ -47,14 +47,14 @@ mobileNavLinks.forEach(link => {
 });
 
 // Close mobile menu on escape key
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     if (e.key === 'Escape' && mobileMenu.classList.contains('active')) {
         toggleMobileMenu();
     }
 });
 
 // ===== Navbar Scroll Effect =====
-window.addEventListener('scroll', function() {
+window.addEventListener('scroll', function () {
     const navbar = document.getElementById('navbar');
     if (window.scrollY > 100) {
         navbar.classList.add('scrolled');
@@ -63,34 +63,24 @@ window.addEventListener('scroll', function() {
     }
 });
 
-// ===== Hero Image Shrink and Collage Appear Effect =====
-let heroShrunk = false;
-let collageShown = false;
+// ===== Hero Slider =====
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+    const slideInterval = 5000; // 5 seconds
 
-window.addEventListener('scroll', function() {
-    const scrollY = window.scrollY;
-    const heroImage = document.getElementById('heroImage');
-    const collageGrid = document.getElementById('collageGrid');
-    const collageItems = document.querySelectorAll('.collage-item');
+    if (slides.length === 0) return;
 
-    // Shrink hero image
-    if (scrollY > 200 && !heroShrunk) {
-        heroImage.classList.add('shrink');
-        heroShrunk = true;
-    } else if (scrollY <= 200 && heroShrunk) {
-        heroImage.classList.remove('shrink');
-        heroShrunk = false;
-    }
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, slideInterval);
+}
 
-    // Show collage
-    if (scrollY > 300 && !collageShown) {
-        collageGrid.classList.add('visible');
-        collageItems.forEach(item => {
-            item.classList.add('show');
-        });
-        collageShown = true;
-    }
-});
+window.addEventListener('load', initHeroSlider);
+
+
 
 // ===== Intersection Observer for Divider Lines =====
 const observerOptions = {
@@ -130,16 +120,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// ===== Parallax Effect to Hero Image =====
-window.addEventListener('scroll', function() {
-    const scrollY = window.scrollY;
-    const heroImage = document.getElementById('heroImage');
-    const speed = 0.5;
 
-    if (scrollY < window.innerHeight) {
-        heroImage.style.transform = `translateY(${scrollY * speed}px) ${heroShrunk ? 'scale(0.7) translateY(-10%)' : ''}`;
-    }
-});
 
 // ===== Animate Stats on Scroll =====
 const statsObserver = new IntersectionObserver((entries) => {
@@ -199,7 +180,7 @@ interactiveElements.forEach(element => {
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
 
-contactForm.addEventListener('submit', function(e) {
+contactForm.addEventListener('submit', function (e) {
     e.preventDefault();
 
     // Get form values
@@ -253,27 +234,27 @@ function initMap() {
             {
                 "featureType": "all",
                 "elementType": "geometry",
-                "stylers": [{"color": "#242f3e"}]
+                "stylers": [{ "color": "#242f3e" }]
             },
             {
                 "featureType": "all",
                 "elementType": "labels.text.stroke",
-                "stylers": [{"lightness": -80}]
+                "stylers": [{ "lightness": -80 }]
             },
             {
                 "featureType": "administrative",
                 "elementType": "labels.text.fill",
-                "stylers": [{"color": "#746855"}]
+                "stylers": [{ "color": "#746855" }]
             },
             {
                 "featureType": "poi",
                 "elementType": "labels.text.fill",
-                "stylers": [{"color": "#d59563"}]
+                "stylers": [{ "color": "#d59563" }]
             },
             {
                 "featureType": "water",
                 "elementType": "geometry",
-                "stylers": [{"color": "#17263c"}]
+                "stylers": [{ "color": "#17263c" }]
             }
         ]
     });
@@ -369,7 +350,7 @@ function loadGoogleMaps() {
 window.addEventListener('load', loadGoogleMaps);
 
 // ===== Keyboard Navigation Improvements =====
-document.addEventListener('keydown', function(e) {
+document.addEventListener('keydown', function (e) {
     // Allow Enter key to activate cards
     if (e.key === 'Enter' && e.target.closest('.concept-card')) {
         e.target.closest('.concept-card').click();

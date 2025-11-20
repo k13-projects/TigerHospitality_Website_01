@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="TIGER HOSPITALITY - Elevating San Diego's culinary scene with premium restaurants, craft cocktails, and exceptional dining experiences">
+    <meta name="description"
+        content="TIGER HOSPITALITY - Elevating San Diego's culinary scene with premium restaurants, craft cocktails, and exceptional dining experiences">
     <meta name="keywords" content="San Diego restaurants, Tiger Hospitality, fine dining, craft cocktails">
     <title>TIGER HOSPITALITY - Elevating San Diego's Culinary Scene</title>
 
     <!-- Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:wght@400;700&display=swap"
+        rel="stylesheet">
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="css/style.css">
@@ -16,6 +20,7 @@
     <!-- Favicon (optional) -->
     <!-- <link rel="icon" type="image/png" href="assets/favicon.png"> -->
 </head>
+
 <body>
     <!-- Skip to main content for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
@@ -26,7 +31,7 @@
     <!-- Loading Screen -->
     <div class="loading-screen" id="loadingScreen" aria-hidden="true">
         <div class="loader-container">
-            <div class="thg-loader">TIGER HOSPITALITY</div>
+            <img src="assets/logo.png" alt="Tiger Hospitality Logo" class="thg-loader-logo">
             <div class="thg-loader-mask"></div>
         </div>
     </div>
@@ -54,7 +59,8 @@
                 <li><a href="#about">About</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
-            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu" aria-expanded="false">
+            <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu"
+                aria-expanded="false">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -64,328 +70,512 @@
 
     <!-- Hero Section -->
     <section class="hero-container" id="home">
-        <div class="hero-image" id="heroImage" role="img" aria-label="Luxury restaurant interior"></div>
+        <div class="hero-slider" id="heroSlider">
+            <div class="hero-slide active"
+                style="background-image: url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1920&q=80')">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1559339352-11d035aa65de?w=1920&q=80')">
+            </div>
+            <div class="hero-slide"
+                style="background-image: url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=1920&q=80')">
+            </div>
+        </div>
         <div class="hero-content">
             <h1 class="hero-title">TIGER HOSPITALITY</h1>
-            <p class="hero-subtitle">Elevating San Diego's Culinary Landscape</p>
+            <p class="hero-subtitle">Creating Exceptional Community Dining Experiences Across Southern California</p>
         </div>
     </section>
 
-    <!-- Collage Section -->
     <main id="main-content">
-        <section class="collage-section" aria-label="Restaurant highlights">
-            <div class="collage-grid" id="collageGrid">
-                <article class="collage-item">
-                    <div class="collage-image" role="img" aria-label="Fine dining restaurant interior"></div>
-                    <div class="collage-overlay">
-                        <h3 class="collage-title">Fine Dining Excellence</h3>
-                        <p class="collage-desc">Sophisticated culinary experiences</p>
+
+        <!-- Section Divider -->
+        <div class="section-divider">
+            <div class="divider-line left" id="leftLine"></div>
+            <div class="divider-text">OUR CONCEPTS</div>
+            <div class="divider-line right" id="rightLine"></div>
+        </div>
+
+        <!-- Our Concepts Section -->
+        <section class="concepts-section" id="concepts">
+            <!-- Culinary Concepts -->
+            <div class="subsection">
+                <div class="section-header">
+                    <h2 class="section-title">Culinary Concepts</h2>
+                </div>
+                <div class="concepts-grid">
+                    <!-- Lobster Lab -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Lobster Lab</h3>
+                                    <p class="card-category">Seafood Concept</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Lobster Lab</h3>
+                                <p class="card-story">
+                                    Seafood concept serving up various lobster roll iterations, including the popular
+                                    Lobster Grilled Cheese. Number 1 Ranked Lobster Roll in San Diego 2024 on Yelp.
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Carlsbad</div>
+                                        <div class="detail-value">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=890+Palomar+Airport+Rd+Carlsbad+CA"
+                                                target="_blank" class="address-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
+                                                    <path
+                                                        d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                                                </svg>
+                                                890 Palomar Airport Rd
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">San Clemente</div>
+                                        <div class="detail-value">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="card-links">
+                                    <a href="https://www.instagram.com/lobsterlab.usa/" target="_blank"
+                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                        </svg></a>
+                                    <a href="https://lobsterlab.us/" target="_blank" aria-label="Website"><svg
+                                            xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                            fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </article>
-                <article class="collage-item">
-                    <div class="collage-image" role="img" aria-label="Craft cocktails at bar"></div>
-                    <div class="collage-overlay">
-                        <h3 class="collage-title">Craft Cocktails</h3>
-                        <p class="collage-desc">Good Enough Cocktails Club</p>
+
+                    <!-- Cosmos -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Cosmos</h3>
+                                    <p class="card-category">Premium Burgers</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Cosmos</h3>
+                                <p class="card-story">
+                                    Burgers made with fresh, premium ingredients. Best known for the signature Spicy Jam
+                                    Burger and Monkey Fries.
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Carlsbad</div>
+                                        <div class="detail-value">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=890+Palomar+Airport+Rd+Carlsbad+CA"
+                                                target="_blank" class="address-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
+                                                    <path
+                                                        d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                                                </svg>
+                                                890 Palomar Airport Rd
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">San Clemente</div>
+                                        <div class="detail-value">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="card-links">
+                                    <a href="https://www.instagram.com/burger.cosmos/" target="_blank"
+                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </article>
-                <article class="collage-item">
-                    <div class="collage-image" role="img" aria-label="Fresh local ingredients"></div>
-                    <div class="collage-overlay">
-                        <h3 class="collage-title">Local Flavors</h3>
-                        <p class="collage-desc">San Diego's best ingredients</p>
+
+                    <!-- La Vida -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">La Vida</h3>
+                                    <p class="card-category">Healthy Eats</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>La Vida</h3>
+                                <p class="card-story">
+                                    Healthy eats including salads, sandwiches and wraps, toasts, and smoothies.
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Carlsbad</div>
+                                        <div class="detail-value">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=890+Palomar+Airport+Rd+Carlsbad+CA"
+                                                target="_blank" class="address-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
+                                                    <path
+                                                        d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                                                </svg>
+                                                890 Palomar Airport Rd
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
+                                        <div class="detail-label">San Clemente</div>
+                                        <div class="detail-value">Coming Soon</div>
+                                    </div>
+                                </div>
+                                <div class="card-links">
+                                    <a href="https://www.instagram.com/lavida.sandiego/" target="_blank"
+                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </article>
-                <article class="collage-item">
-                    <div class="collage-image" role="img" aria-label="Vibrant restaurant atmosphere"></div>
-                    <div class="collage-overlay">
-                        <h3 class="collage-title">Vibrant Atmosphere</h3>
-                        <p class="collage-desc">Unforgettable ambiance</p>
+
+                    <!-- Good Enough -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Good Enough</h3>
+                                    <p class="card-category">Craft Cocktails & Tapas</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Good Enough</h3>
+                                <p class="card-story">
+                                    Signature craft cocktails and premium spirits meet a Spanish-inspired menu of tapas
+                                    and pintxos, complemented by a curated vinyl collection that creates a warm,
+                                    inviting atmosphere.
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Little Italy</div>
+                                        <div class="detail-value">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=555+W+Date+St+Suite+B+San+Diego+CA"
+                                                target="_blank" class="address-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
+                                                    <path
+                                                        d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                                                </svg>
+                                                555 W. Date St, Suite B
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-links">
+                                    <a href="https://www.instagram.com/goodenough.sd/" target="_blank"
+                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </article>
-                <article class="collage-item">
-                    <div class="collage-image" role="img" aria-label="Innovative culinary creations"></div>
-                    <div class="collage-overlay">
-                        <h3 class="collage-title">Innovation</h3>
-                        <p class="collage-desc">Pushing culinary boundaries</p>
+                </div>
+            </div>
+
+            <!-- Food Halls -->
+            <div class="subsection">
+                <div class="section-header">
+                    <h2 class="section-title">Food Halls</h2>
+                </div>
+                <div class="concepts-grid">
+                    <!-- Windmill Food Hall -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Windmill Food Hall</h3>
+                                    <p class="card-category">Carlsbad</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Windmill Food Hall</h3>
+                                <p class="card-story">
+                                    A vibrant culinary destination in Carlsbad featuring a variety of local eateries,
+                                    craft drinks, and live entertainment—all under one iconic roof.
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Location</div>
+                                        <div class="detail-value">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=890+Palomar+Airport+Rd+Carlsbad+CA"
+                                                target="_blank" class="address-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
+                                                    <path
+                                                        d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                                                </svg>
+                                                890 Palomar Airport Rd
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-links">
+                                    <a href="https://www.instagram.com/windmillfoodhall/" target="_blank"
+                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                        </svg></a>
+                                    <a href="https://www.windmillfoodhall.com/" target="_blank"
+                                        aria-label="Website"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </article>
-                <article class="collage-item">
-                    <div class="collage-image" role="img" aria-label="Community dining experience"></div>
-                    <div class="collage-overlay">
-                        <h3 class="collage-title">Community</h3>
-                        <p class="collage-desc">Bringing people together</p>
+
+                    <!-- Miramar Food Hall -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Miramar Food Hall</h3>
+                                    <p class="card-category">San Clemente</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Miramar Food Hall</h3>
+                                <p class="card-story">
+                                    San Diego – Coming Soon
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">San Clemente</div>
+                                        <div class="detail-value">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=1720+North+El+Camino+Real+San+Clemente+CA"
+                                                target="_blank" class="address-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                                    fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
+                                                    <path
+                                                        d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                                                </svg>
+                                                1720 North El Camino Real
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-links">
+                                    <a href="https://www.instagram.com/miramarfoodhall/" target="_blank"
+                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                </article>
+
+                    <!-- Station 8 -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Station 8</h3>
+                                    <p class="card-category">La Jolla</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Station 8</h3>
+                                <p class="card-story">
+                                    Coming Soon
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Location</div>
+                                        <div class="detail-value">La Jolla</div>
+                                    </div>
+                                </div>
+                                <div class="card-links">
+                                    <a href="https://www.instagram.com/station8publicmarket/" target="_blank"
+                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                            height="20" fill="currentColor" viewBox="0 0 24 24">
+                                            <path
+                                                d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                        </svg></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Little Italy Food Hall -->
+                    <div class="concept-card">
+                        <div class="card-inner">
+                            <div class="card-front">
+                                <div class="card-image"></div>
+                                <div class="card-content">
+                                    <h3 class="card-title">Little Italy Food Hall</h3>
+                                    <p class="card-category">Little Italy</p>
+                                </div>
+                            </div>
+                            <div class="card-back">
+                                <h3>Little Italy Food Hall</h3>
+                                <p class="card-story">
+                                    Coming Soon
+                                </p>
+                                <div class="card-details">
+                                    <div class="detail-item">
+                                        <div class="detail-label">Location</div>
+                                        <div class="detail-value">Little Italy</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-    <!-- Section Divider -->
-    <div class="section-divider">
-        <div class="divider-line left" id="leftLine"></div>
-        <div class="divider-text">OUR CONCEPTS</div>
-        <div class="divider-line right" id="rightLine"></div>
-    </div>
-
-    <!-- Our Concepts Section -->
-    <section class="concepts-section" id="concepts">
-        <div class="section-header">
-            <h2 class="section-title">Our Restaurant Concepts</h2>
-            <p class="section-subtitle">Each venue tells a unique story of culinary excellence</p>
+        <!-- Section Divider -->
+        <div class="section-divider">
+            <div class="divider-line left" id="leftLine2"></div>
+            <div class="divider-text">OUR STORY</div>
+            <div class="divider-line right" id="rightLine2"></div>
         </div>
-        <div class="concepts-grid">
-            <!-- Concept 1 -->
-            <div class="concept-card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="card-image"></div>
-                        <div class="card-content">
-                            <h3 class="card-title">Good Enough Cocktails Club</h3>
-                            <p class="card-category">Craft Cocktail Bar</p>
+
+        <!-- About Section -->
+        <section class="about-section" id="about">
+            <div class="about-container">
+                <div class="about-content">
+                    <h2>Crafting <span class="highlight">Exceptional</span> Experiences Since 2021</h2>
+                    <p>
+                        TIGER HOSPITALITY emerged from a simple vision: to elevate San Diego's culinary landscape
+                        through innovative concepts that celebrate both tradition and innovation. What started as a
+                        single restaurant has grown into a collection of unique dining experiences, each with its own
+                        story to tell.
+                    </p>
+                    <p>
+                        Our commitment goes beyond exceptional food and service. We believe in creating spaces where
+                        memories are made, where the community gathers, and where every detail contributes to an
+                        unforgettable experience. From our carefully curated menus to our thoughtfully designed
+                        interiors,
+                        every aspect reflects our dedication to excellence.
+                    </p>
+                    <div class="stats-grid">
+                        <div class="stat-item">
+                            <div class="stat-number">4+</div>
+                            <div class="stat-label">Unique Concepts</div>
                         </div>
-                    </div>
-                    <div class="card-back">
-                        <h3>Good Enough Cocktails Club</h3>
-                        <p class="card-story">
-                            Our newest addition to the TIGER HOSPITALITY family, Good Enough Cocktails Club redefines the cocktail experience in San Diego.
-                            With meticulously crafted drinks, intimate atmosphere, and a touch of speakeasy charm,
-                            we've created a space where every sip tells a story.
-                        </p>
-                        <div class="card-details">
-                            <div class="detail-item">
-                                <div class="detail-label">Opened</div>
-                                <div class="detail-value">2024</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Location</div>
-                                <div class="detail-value">Gaslamp</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Capacity</div>
-                                <div class="detail-value">85 Guests</div>
-                            </div>
+                        <div class="stat-item">
+                            <div class="stat-number">500+</div>
+                            <div class="stat-label">Team Members</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">50K+</div>
+                            <div class="stat-label">Monthly Guests</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">15+</div>
+                            <div class="stat-label">Awards Won</div>
                         </div>
                     </div>
                 </div>
+                <div class="about-image"></div>
             </div>
+        </section>
 
-            <!-- Concept 2 -->
-            <div class="concept-card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="card-image"></div>
-                        <div class="card-content">
-                            <h3 class="card-title">Tiger's Den</h3>
-                            <p class="card-category">Asian Fusion Restaurant</p>
+        <!-- Contact Section -->
+        <section class="contact-section" id="contact" aria-label="Contact information">
+            <div class="contact-content">
+                <div class="contact-left">
+                    <h2 class="contact-title">Let's Connect</h2>
+                    <p class="contact-subtitle">Partner with San Diego's premier hospitality group</p>
+                    <div class="contact-info">
+                        <div class="contact-item">
+                            <h4>General Inquiries</h4>
+                            <p><a href="mailto:info@tigerhospitalitygroup.com">info@tigerhospitalitygroup.com</a></p>
+                            <p><a href="tel:+16195551234">(619) 555-1234</a></p>
                         </div>
-                    </div>
-                    <div class="card-back">
-                        <h3>Tiger's Den</h3>
-                        <p class="card-story">
-                            A celebration of Pan-Asian cuisine meets California freshness. Tiger's Den brings together
-                            the best of Eastern flavors with Western techniques, creating an innovative dining experience
-                            that has become a San Diego favorite.
-                        </p>
-                        <div class="card-details">
-                            <div class="detail-item">
-                                <div class="detail-label">Opened</div>
-                                <div class="detail-value">2022</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Location</div>
-                                <div class="detail-value">Little Italy</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Capacity</div>
-                                <div class="detail-value">150 Guests</div>
-                            </div>
+                        <div class="contact-item">
+                            <h4>Partnerships</h4>
+                            <p><a
+                                    href="mailto:partners@tigerhospitalitygroup.com">partners@tigerhospitalitygroup.com</a>
+                            </p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Careers</h4>
+                            <p><a href="mailto:careers@tigerhospitalitygroup.com">careers@tigerhospitalitygroup.com</a>
+                            </p>
                         </div>
                     </div>
                 </div>
+
+                <form class="contact-form" id="contactForm" aria-label="Contact form">
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required placeholder="John Doe" aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email Address *</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com"
+                            aria-required="true">
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="(619) 555-1234">
+                    </div>
+                    <div class="form-group">
+                        <label for="inquiry">Inquiry Type *</label>
+                        <select id="inquiry" name="inquiry" required aria-required="true">
+                            <option value="">Select an option</option>
+                            <option value="general">General Inquiry</option>
+                            <option value="partnership">Partnership Opportunity</option>
+                            <option value="reservation">Group Reservation</option>
+                            <option value="career">Career Opportunity</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" required placeholder="Tell us about your inquiry..."
+                            aria-required="true"></textarea>
+                    </div>
+                    <button type="submit" class="submit-btn">Send Message</button>
+                    <div class="form-message" id="formMessage" role="alert" aria-live="polite"></div>
+                </form>
             </div>
+        </section>
 
-            <!-- Concept 3 -->
-            <div class="concept-card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="card-image"></div>
-                        <div class="card-content">
-                            <h3 class="card-title">Coastal Kitchen</h3>
-                            <p class="card-category">Seafood & Grill</p>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <h3>Coastal Kitchen</h3>
-                        <p class="card-story">
-                            Where the ocean meets the plate. Coastal Kitchen showcases the bounty of the Pacific
-                            with sustainably sourced seafood, locally grown produce, and a commitment to
-                            environmental responsibility without compromising on luxury.
-                        </p>
-                        <div class="card-details">
-                            <div class="detail-item">
-                                <div class="detail-label">Opened</div>
-                                <div class="detail-value">2021</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Location</div>
-                                <div class="detail-value">La Jolla</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Capacity</div>
-                                <div class="detail-value">200 Guests</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+        <!-- Map Section -->
+        <section class="map-section" aria-label="Restaurant locations">
+            <div class="map-container">
+                <div id="map"></div>
             </div>
-
-            <!-- Concept 4 -->
-            <div class="concept-card">
-                <div class="card-inner">
-                    <div class="card-front">
-                        <div class="card-image"></div>
-                        <div class="card-content">
-                            <h3 class="card-title">Sunset Terrace</h3>
-                            <p class="card-category">Rooftop Lounge</p>
-                        </div>
-                    </div>
-                    <div class="card-back">
-                        <h3>Sunset Terrace</h3>
-                        <p class="card-story">
-                            San Diego's premier rooftop destination. With panoramic views of the Pacific and downtown skyline,
-                            Sunset Terrace offers craft cocktails, small plates, and an atmosphere that captures
-                            the essence of Southern California living.
-                        </p>
-                        <div class="card-details">
-                            <div class="detail-item">
-                                <div class="detail-label">Opened</div>
-                                <div class="detail-value">2023</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Location</div>
-                                <div class="detail-value">Downtown</div>
-                            </div>
-                            <div class="detail-item">
-                                <div class="detail-label">Capacity</div>
-                                <div class="detail-value">120 Guests</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Section Divider -->
-    <div class="section-divider">
-        <div class="divider-line left" id="leftLine2"></div>
-        <div class="divider-text">OUR STORY</div>
-        <div class="divider-line right" id="rightLine2"></div>
-    </div>
-
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <div class="about-container">
-            <div class="about-content">
-                <h2>Crafting <span class="highlight">Exceptional</span> Experiences Since 2021</h2>
-                <p>
-                    TIGER HOSPITALITY emerged from a simple vision: to elevate San Diego's culinary landscape
-                    through innovative concepts that celebrate both tradition and innovation. What started as a
-                    single restaurant has grown into a collection of unique dining experiences, each with its own
-                    story to tell.
-                </p>
-                <p>
-                    Our commitment goes beyond exceptional food and service. We believe in creating spaces where
-                    memories are made, where the community gathers, and where every detail contributes to an
-                    unforgettable experience. From our carefully curated menus to our thoughtfully designed interiors,
-                    every aspect reflects our dedication to excellence.
-                </p>
-                <div class="stats-grid">
-                    <div class="stat-item">
-                        <div class="stat-number">4+</div>
-                        <div class="stat-label">Unique Concepts</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">500+</div>
-                        <div class="stat-label">Team Members</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">50K+</div>
-                        <div class="stat-label">Monthly Guests</div>
-                    </div>
-                    <div class="stat-item">
-                        <div class="stat-number">15+</div>
-                        <div class="stat-label">Awards Won</div>
-                    </div>
-                </div>
-            </div>
-            <div class="about-image"></div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section class="contact-section" id="contact" aria-label="Contact information">
-        <div class="contact-content">
-            <div class="contact-left">
-                <h2 class="contact-title">Let's Connect</h2>
-                <p class="contact-subtitle">Partner with San Diego's premier hospitality group</p>
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <h4>General Inquiries</h4>
-                        <p><a href="mailto:info@tigerhospitalitygroup.com">info@tigerhospitalitygroup.com</a></p>
-                        <p><a href="tel:+16195551234">(619) 555-1234</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <h4>Partnerships</h4>
-                        <p><a href="mailto:partners@tigerhospitalitygroup.com">partners@tigerhospitalitygroup.com</a></p>
-                    </div>
-                    <div class="contact-item">
-                        <h4>Careers</h4>
-                        <p><a href="mailto:careers@tigerhospitalitygroup.com">careers@tigerhospitalitygroup.com</a></p>
-                    </div>
-                </div>
-            </div>
-
-            <form class="contact-form" id="contactForm" aria-label="Contact form">
-                <div class="form-group">
-                    <label for="name">Full Name *</label>
-                    <input type="text" id="name" name="name" required placeholder="John Doe" aria-required="true">
-                </div>
-                <div class="form-group">
-                    <label for="email">Email Address *</label>
-                    <input type="email" id="email" name="email" required placeholder="john@example.com" aria-required="true">
-                </div>
-                <div class="form-group">
-                    <label for="phone">Phone Number</label>
-                    <input type="tel" id="phone" name="phone" placeholder="(619) 555-1234">
-                </div>
-                <div class="form-group">
-                    <label for="inquiry">Inquiry Type *</label>
-                    <select id="inquiry" name="inquiry" required aria-required="true">
-                        <option value="">Select an option</option>
-                        <option value="general">General Inquiry</option>
-                        <option value="partnership">Partnership Opportunity</option>
-                        <option value="reservation">Group Reservation</option>
-                        <option value="career">Career Opportunity</option>
-                        <option value="other">Other</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="message">Message *</label>
-                    <textarea id="message" name="message" required placeholder="Tell us about your inquiry..." aria-required="true"></textarea>
-                </div>
-                <button type="submit" class="submit-btn">Send Message</button>
-                <div class="form-message" id="formMessage" role="alert" aria-live="polite"></div>
-            </form>
-        </div>
-    </section>
-
-    <!-- Map Section -->
-    <section class="map-section" aria-label="Restaurant locations">
-        <div class="map-container">
-            <div id="map"></div>
-        </div>
-    </section>
+        </section>
     </main>
 
     <!-- Footer -->
@@ -408,4 +598,5 @@
     <!-- Google Maps API (Uncomment and add your API key to enable interactive maps) -->
     <!-- <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap" async defer></script> -->
 </body>
+
 </html>
