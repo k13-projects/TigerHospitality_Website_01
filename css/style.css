@@ -307,6 +307,17 @@ nav.scrolled {
     transform: scale(1.1);
 }
 
+.hero-slide::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
 .hero-slide.active {
     opacity: 1;
     transform: scale(1);
@@ -333,6 +344,7 @@ nav.scrolled {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s ease-out 2.5s forwards;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .hero-subtitle {
@@ -343,6 +355,7 @@ nav.scrolled {
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s ease-out 2.7s forwards;
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeInUp {
