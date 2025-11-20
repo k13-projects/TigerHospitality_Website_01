@@ -259,24 +259,6 @@ nav.scrolled {
     pointer-events: all;
 }
 
-/* Custom Cursor */
-.custom-cursor {
-    width: 20px;
-    height: 20px;
-    border: 2px solid var(--luxury-gold);
-    border-radius: 50%;
-    position: fixed;
-    pointer-events: none;
-    z-index: 9999;
-    transition: transform 0.15s ease, width 0.3s ease, height 0.3s ease;
-    transform: translate(-50%, -50%);
-    mix-blend-mode: difference;
-}
-
-.custom-cursor.hover {
-    width: 50px;
-    height: 50px;
-}
 
 /* Hero Section with Shrink Effect */
 .hero-container {
@@ -1060,10 +1042,6 @@ select:focus {
 
     .mobile-menu-toggle {
         display: flex;
-    }
-
-    .custom-cursor {
-        display: none;
     }
 
     .collage-grid {

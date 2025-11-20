@@ -158,24 +158,6 @@ if (statsGrid) {
     statsObserver.observe(statsGrid);
 }
 
-// ===== Custom Cursor =====
-const cursor = document.getElementById('customCursor');
-const interactiveElements = document.querySelectorAll('a, button, .concept-card, .collage-item');
-
-document.addEventListener('mousemove', (e) => {
-    cursor.style.left = e.clientX + 'px';
-    cursor.style.top = e.clientY + 'px';
-});
-
-interactiveElements.forEach(element => {
-    element.addEventListener('mouseenter', () => {
-        cursor.classList.add('hover');
-    });
-    element.addEventListener('mouseleave', () => {
-        cursor.classList.remove('hover');
-    });
-});
-
 // ===== Contact Form Validation and Submission =====
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
