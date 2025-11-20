@@ -5,13 +5,13 @@
 
 // ===== Loading Screen =====
 window.addEventListener('load', function () {
-    // Wait for bottom-to-top reveal (1.5s) + 1 second pause
+    // Wait for bottom-to-top reveal (2s) + 1 second pause
     setTimeout(() => {
         document.getElementById('loadingScreen').classList.add('fade-out');
         setTimeout(() => {
             document.getElementById('loadingScreen').style.display = 'none';
         }, 800);
-    }, 2500); // 1500ms for reveal + 1000ms pause
+    }, 2100); // 2000ms for reveal + 100ms pause
 });
 
 // ===== Mobile Menu Toggle =====

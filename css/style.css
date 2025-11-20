@@ -48,16 +48,17 @@ body {
 .loader-container {
     position: relative;
     overflow: hidden;
-    height: 140px;
+    /* height: 140px; Removed fixed height to adapt to logo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
-.thg-loader {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 120px;
-    color: var(--soft-white);
-    letter-spacing: 15px;
-    line-height: 1;
+.thg-loader-logo {
+    height: 300px;
+    width: auto;
     position: relative;
+    display: block;
 }
 
 /* Bottom-to-top reveal animation using clip-path */
@@ -68,7 +69,7 @@ body {
     right: 0;
     bottom: 0;
     background: var(--primary-black);
-    animation: revealUp 1.5s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+    animation: revealUp 2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
 }
 
 @keyframes revealUp {
