@@ -699,6 +699,58 @@ nav.scrolled {
     color: var(--luxury-gold);
 }
 
+.address-link {
+    color: var(--luxury-gold);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.address-link:hover {
+    color: var(--soft-white);
+    transform: translateX(3px);
+}
+
+.address-link svg {
+    flex-shrink: 0;
+}
+
+.card-links {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.card-links a {
+    color: var(--luxury-gold);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-links a svg {
+    width: 40px;
+    height: 40px;
+}
+
+.card-links a:hover {
+    color: var(--soft-white);
+    transform: scale(1.2);
+}
+
+.subsection {
+    margin-bottom: 80px;
+}
+
+.subsection .section-header {
+    margin-bottom: 60px;
+}
+
 /* About Section */
 .about-section {
     padding: 120px 50px;
