@@ -63,6 +63,23 @@ window.addEventListener('scroll', function () {
     }
 });
 
+// ===== Hero Slider =====
+function initHeroSlider() {
+    const slides = document.querySelectorAll('.hero-slide');
+    let currentSlide = 0;
+    const slideInterval = 5000; // 5 seconds
+
+    if (slides.length === 0) return;
+
+    setInterval(() => {
+        slides[currentSlide].classList.remove('active');
+        currentSlide = (currentSlide + 1) % slides.length;
+        slides[currentSlide].classList.add('active');
+    }, slideInterval);
+}
+
+window.addEventListener('load', initHeroSlider);
+
 
 
 // ===== Intersection Observer for Divider Lines =====
