@@ -245,16 +245,6 @@ function initMap() {
     // Food Halls and Standalone Locations
     const locations = [
         {
-            coords: [33.1142, -117.3085],
-            title: 'Windmill Food Hall',
-            type: 'foodhall',
-            address: '890 Palomar Airport Rd, Carlsbad, CA',
-            concepts: ['Lobster Lab', 'Cosmos', 'La Vida'],
-            website: 'https://www.windmillfoodhall.com/',
-            instagram: 'https://www.instagram.com/windmillfoodhall/',
-            logo: 'assets/logos/windmill.png'
-        },
-        {
             coords: [32.7197, -117.1697],
             title: 'Good Enough',
             type: 'standalone',
