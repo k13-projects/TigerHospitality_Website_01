@@ -532,7 +532,7 @@ nav.scrolled {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
     letter-spacing: 12px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--primary-black);
     padding: 0 40px;
     background: var(--soft-white);
@@ -633,24 +633,47 @@ nav.scrolled {
 }
 
 .concept-card:nth-child(2) .card-image {
-    background-image: url('../assets/cards/cosmos 1-49.jpg');
-    background-size: 120%;
-    background-position: center 60%;
+    background-image: url('../assets/cards/bbq chicken.jpg');
+    background-size: 100%;
+    background-position: center 65%;
     background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(3) .card-image {
     background-image: url('../assets/cards/La Vida.jpg');
-    background-size: 120%;
-    background-position: center 65%;
+    background-size: 100%;
+    background-position: center 0%;
     background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(4) .card-image {
-    background-image: url('../assets/cards/Good Enough.png');
-    background-size: 140%;
-    background-position: center 75%;
+    background-image: url('../assets/cards/good enough card.png');
+    background-size: 100%;
+    background-position: center 30%;
     background-repeat: no-repeat;
+}
+
+.concept-card:nth-child(5) .card-image {
+    background-image: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+.concept-card:nth-child(5) .card-image::before {
+    content: 'COMING SOON';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 8px;
+    opacity: 0.3;
 }
 
 /* Food Halls Subsection - Override with logos */

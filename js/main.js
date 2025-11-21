@@ -280,6 +280,15 @@ function initMap() {
             logo: 'assets/logos/goodenough.png'
         },
         {
+            coords: [33.4267, -117.6112],
+            title: 'Egg n Out (Breakfast Club)',
+            type: 'standalone',
+            address: '1720 North El Camino Real, San Clemente, CA',
+            description: 'Breakfast Concept',
+            status: 'Coming Soon',
+            logo: 'assets/logo.png'
+        },
+        {
             coords: [32.7200, -117.1700],
             title: 'Global Fork FH',
             type: 'foodhall',
@@ -303,7 +312,7 @@ function initMap() {
             title: 'Miramar Food Hall',
             type: 'foodhall',
             address: '1720 North El Camino Real, San Clemente, CA',
-            concepts: ['Lobster Lab', 'Cosmos', 'La Vida'],
+            concepts: ['Lobster Lab', 'Cosmos', 'La Vida', 'Egg n Out'],
             status: 'Coming Soon',
             instagram: 'https://www.instagram.com/miramarfoodhall/',
             logo: 'assets/logos/miramar.png'
