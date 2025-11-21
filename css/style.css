@@ -1,6 +1,9 @@
 /* =========================
    TIGER HOSPITALITY WEBSITE
    Custom Styles
+
+   © 2025 Tiger Hospitality Group
+   All rights reserved
    ========================= */
 
 /* Reset & Base */
@@ -1369,5 +1372,19 @@ select:focus {
 
     .contact-section {
         padding: 60px 25px;
+    }
+
+    .section-divider {
+        height: 80px;
+    }
+
+    .divider-text {
+        font-size: 28px;
+        letter-spacing: 4px;
+        padding: 0 20px;
+    }
+
+    .divider-line {
+        display: block;
     }
 }

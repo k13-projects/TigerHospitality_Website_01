@@ -1,6 +1,9 @@
 /**
  * TIGER HOSPITALITY WEBSITE
  * Main JavaScript File
+ *
+ * © 2025 Tiger Hospitality Group
+ * All rights reserved
  */
 
 // ===== Scroll Restoration - Always start at top on page load =====
@@ -169,27 +172,29 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 const statsObserver = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
         if (entry.isIntersecting) {
-            const statNumbers = entry.target.querySelectorAll('.stat-number');
-            statNumbers.forEach(stat => {
-                const finalValue = stat.textContent;
-                const isNumeric = /^\d+/.test(finalValue);
+            const statCounters = entry.target.querySelectorAll('.stat-counter .stat-number');
+            statCounters.forEach(stat => {
+                const target = parseInt(stat.getAttribute('data-target'));
+                let current = 0;
+                const increment = target / 50;
 
-                if (isNumeric) {
-                    const numericValue = parseInt(finalValue.match(/\d+/)[0]);
-                    const suffix = finalValue.replace(/\d+/, '');
-                    let current = 0;
-                    const increment = numericValue / 50;
+                // Add suffix for large numbers
+                const formatNumber = (num) => {
+                    if (num >= 1000) {
+                        return (num / 1000).toFixed(0) + 'K+';
+                    }
+                    return num + '+';
+                };
 
-                    const counter = setInterval(() => {
-                        current += increment;
-                        if (current >= numericValue) {
-                            stat.textContent = numericValue + suffix;
-                            clearInterval(counter);
-                        } else {
-                            stat.textContent = Math.floor(current) + suffix;
-                        }
-                    }, 30);
-                }
+                const counter = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        stat.textContent = formatNumber(target);
+                        clearInterval(counter);
+                    } else {
+                        stat.textContent = formatNumber(Math.floor(current));
+                    }
+                }, 30);
             });
             statsObserver.unobserve(entry.target);
         }

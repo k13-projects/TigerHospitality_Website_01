@@ -14,8 +14,10 @@ TigerHospitality_Website_01/
 │   ├── hero/              # Hero slider background images
 │   ├── cards/             # Concept card photos
 │   ├── logos/             # Brand logos for map markers
+│   ├── Lobster Lab 3 - 5.25.23-79.jpg  # About section image
 │   └── logo.png           # Main Tiger Hospitality logo
 ├── index.html             # Main HTML file
+├── privacy-policy.html    # Privacy policy page
 ├── server.js              # Express server for local development
 ├── package.json           # Node.js dependencies
 ├── README.md              # Project documentation
@@ -131,6 +133,7 @@ This is a static website deployable to:
 
 ### Files Required for Deployment
 - `index.html`
+- `privacy-policy.html`
 - `css/` folder
 - `js/` folder
 - `assets/` folder
@@ -159,10 +162,28 @@ This is a private project for Tiger Hospitality Group. For internal contribution
 2. Make your changes
 3. Submit a pull request to `main`
 
+## Legal & Compliance
+
+### Privacy Policy
+The website includes a comprehensive privacy policy (`privacy-policy.html`) that covers:
+- Information collection practices
+- Data usage and disclosure
+- User rights and opt-out options
+- Cookie usage
+- Security measures
+
+### Third-Party Services
+- **Leaflet.js** - Open-source mapping library (BSD 2-Clause License)
+- **OpenStreetMap** - Map tiles (ODbL License)
+- **Google Fonts** - Typography (Apache License 2.0)
+
+### Content Rights
+All restaurant photos, logos, and brand content are owned by Tiger Hospitality Group and its respective restaurant brands.
+
 ## License
 
 All rights reserved - TIGER HOSPITALITY 2025
 
 ## Contact
 
-For questions or support, contact the development team.
+For questions or support, contact the development team at info@tigerhospitalitygroup.com
