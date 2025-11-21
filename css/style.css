@@ -1,6 +1,9 @@
 /* =========================
    TIGER HOSPITALITY WEBSITE
    Custom Styles
+
+   © 2025 Tiger Hospitality Group
+   All rights reserved
    ========================= */
 
 /* Reset & Base */
@@ -12,7 +15,8 @@
 
 :root {
     --primary-black: #0a0a0a;
-    --luxury-gold: #c9a961;
+    --luxury-gold: #b8954d;  /* Darkened for WCAG AA contrast compliance */
+    --luxury-gold-light: #c9a961;  /* Original gold for backgrounds/borders */
     --soft-white: #fafafa;
     --medium-gray: #666;
     --light-gray: #f5f5f5;
@@ -885,18 +889,25 @@ nav.scrolled {
     margin-bottom: 20px;
 }
 
+/* Core Values Inline Highlight */
+.value-highlight {
+    color: var(--luxury-gold);
+    font-weight: 600;
+}
+
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 40px;
-    margin-top: 50px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .stat-item {
     text-align: center;
 }
 
-.stat-number {
+/* Animated Counter Styling */
+.stat-item.stat-counter .stat-number {
     font-family: 'Bebas Neue', sans-serif;
     font-size: 56px;
     color: var(--luxury-gold);
@@ -913,7 +924,7 @@ nav.scrolled {
 .about-image {
     position: relative;
     height: 600px;
-    background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80');
+    background: url('../assets/Lobster Lab 3 - 5.25.23-79.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -995,6 +1006,35 @@ nav.scrolled {
 
 .contact-item a:hover {
     color: var(--luxury-gold);
+}
+
+.contact-social-links {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.contact-social-links a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--soft-white);
+    transition: all 0.3s ease;
+}
+
+.contact-social-links a:hover {
+    background: var(--luxury-gold);
+    color: var(--primary-black);
+    transform: translateY(-3px);
+}
+
+.contact-social-links svg {
+    width: 20px;
+    height: 20px;
 }
 
 /* Contact Form */
@@ -1180,11 +1220,35 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
 }
 
 .footer-text {
     color: rgba(255, 255, 255, 0.5);
     font-size: 14px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.footer-links a {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 14px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.footer-links a:focus {
+    color: var(--luxury-gold);
+}
+
+.footer-links span {
+    color: rgba(255, 255, 255, 0.3);
 }
 
 .social-links {
@@ -1263,6 +1327,16 @@ select:focus {
         gap: 40px;
     }
 
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
+    }
+
+    .core-values {
+        font-size: 14px;
+        padding: 15px 0;
+    }
+
     .contact-content {
         grid-template-columns: 1fr;
         gap: 40px;
@@ -1298,5 +1372,19 @@ select:focus {
 
     .contact-section {
         padding: 60px 25px;
+    }
+
+    .section-divider {
+        height: 80px;
+    }
+
+    .divider-text {
+        font-size: 28px;
+        letter-spacing: 4px;
+        padding: 0 20px;
+    }
+
+    .divider-line {
+        display: block;
     }
 }

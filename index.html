@@ -7,6 +7,11 @@
     <meta name="description"
         content="TIGER HOSPITALITY - Elevating San Diego's culinary scene with premium restaurants, craft cocktails, and exceptional dining experiences">
     <meta name="keywords" content="San Diego restaurants, Tiger Hospitality, fine dining, craft cocktails">
+
+    <!-- Security: Content Security Policy -->
+    <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self'; script-src 'self' 'unsafe-inline' https://unpkg.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://unpkg.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com; connect-src 'self' https://*.tile.openstreetmap.org https://*.basemaps.cartocdn.com;">
+
     <title>TIGER HOSPITALITY - Elevating San Diego's Culinary Scene</title>
 
     <!-- Fonts -->
@@ -54,7 +59,7 @@
     <!-- Navigation -->
     <nav id="navbar" role="navigation" aria-label="Main navigation">
         <div class="nav-container">
-            <a href="#" class="logo" aria-label="TIGER HOSPITALITY Home">
+            <a href="#home" class="logo" aria-label="TIGER HOSPITALITY Home">
                 <img src="assets/logo.png" alt="Tiger Hospitality" class="logo-image">
             </a>
             <ul class="nav-links">
@@ -65,27 +70,35 @@
             </ul>
             <button class="mobile-menu-toggle" id="mobileMenuToggle" aria-label="Toggle mobile menu"
                 aria-expanded="false">
-                <span></span>
-                <span></span>
-                <span></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
             </button>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section class="hero-container" id="home">
-        <div class="hero-slider" id="heroSlider">
+    <section class="hero-container" id="home" aria-label="Hero banner showcasing Tiger Hospitality restaurants">
+        <div class="hero-slider" id="heroSlider" role="region" aria-label="Image slideshow of restaurant concepts">
             <div class="hero-slide active"
-                style="background-image: url('assets/hero/Cosmos.jpg')">
+                style="background-image: url('assets/hero/Cosmos.jpg')"
+                role="img"
+                aria-label="Cosmos premium burger restaurant interior">
             </div>
             <div class="hero-slide"
-                style="background-image: url('assets/hero/Lobster Lab 2.jpg')">
+                style="background-image: url('assets/hero/Lobster Lab 2.jpg')"
+                role="img"
+                aria-label="Lobster Lab seafood restaurant with fresh lobster rolls">
             </div>
             <div class="hero-slide"
-                style="background-image: url('assets/hero/Good Enough.png')">
+                style="background-image: url('assets/hero/Good Enough.png')"
+                role="img"
+                aria-label="Good Enough craft cocktail bar with tapas">
             </div>
             <div class="hero-slide"
-                style="background-image: url('assets/hero/La Vida.jpg')">
+                style="background-image: url('assets/hero/La Vida.jpg')"
+                role="img"
+                aria-label="La Vida healthy restaurant with fresh salads">
             </div>
         </div>
         <div class="hero-content">
@@ -132,7 +145,7 @@
                                         <div class="detail-label">Carlsbad</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=890+Palomar+Airport+Rd+Carlsbad+CA"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" viewBox="0 0 24 24">
                                                     <path
@@ -156,13 +169,13 @@
                                     </div>
                                 </div>
                                 <div class="card-links">
-                                    <a href="https://www.instagram.com/lobsterlab.usa/" target="_blank"
-                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                    <a href="https://www.instagram.com/lobsterlab.us/" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Lobster Lab Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" fill="currentColor" viewBox="0 0 24 24">
                                             <path
                                                 d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
                                         </svg></a>
-                                    <a href="https://lobsterlab.us/" target="_blank" aria-label="Website"><svg
+                                    <a href="https://lobsterlab.us/" target="_blank" rel="noopener noreferrer" aria-label="Website"><svg
                                             xmlns="http://www.w3.org/2000/svg" width="20" height="20"
                                             fill="currentColor" viewBox="0 0 24 24">
                                             <path
@@ -194,7 +207,7 @@
                                         <div class="detail-label">Carlsbad</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=890+Palomar+Airport+Rd+Carlsbad+CA"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" viewBox="0 0 24 24">
                                                     <path
@@ -218,7 +231,7 @@
                                     </div>
                                 </div>
                                 <div class="card-links">
-                                    <a href="https://www.instagram.com/burger.cosmos/" target="_blank"
+                                    <a href="https://www.instagram.com/burger.cosmos/" target="_blank" rel="noopener noreferrer"
                                         aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" fill="currentColor" viewBox="0 0 24 24">
                                             <path
@@ -249,7 +262,7 @@
                                         <div class="detail-label">Carlsbad</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=890+Palomar+Airport+Rd+Carlsbad+CA"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" viewBox="0 0 24 24">
                                                     <path
@@ -273,7 +286,7 @@
                                     </div>
                                 </div>
                                 <div class="card-links">
-                                    <a href="https://www.instagram.com/lavida.sandiego/" target="_blank"
+                                    <a href="https://www.instagram.com/lavida.sandiego/" target="_blank" rel="noopener noreferrer"
                                         aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" fill="currentColor" viewBox="0 0 24 24">
                                             <path
@@ -306,7 +319,7 @@
                                         <div class="detail-label">Little Italy</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=555+W+Date+St+Suite+B+San+Diego+CA"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
                                                     <path
@@ -318,8 +331,8 @@
                                     </div>
                                 </div>
                                 <div class="card-links">
-                                    <a href="https://www.instagram.com/goodenough.sd/" target="_blank"
-                                        aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
+                                    <a href="https://www.instagram.com/goodenoughcocktailclub/" target="_blank" rel="noopener noreferrer"
+                                        aria-label="Good Enough Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" fill="currentColor" viewBox="0 0 24 24">
                                             <path
                                                 d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
@@ -349,7 +362,7 @@
                                         <div class="detail-label">San Clemente</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=1720+North+El+Camino+Real+San+Clemente+CA"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     fill="currentColor" viewBox="0 0 24 24">
                                                     <path
@@ -392,7 +405,7 @@
                                         <div class="detail-label">San Clemente</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=1720+North+El+Camino+Real+San+Clemente+CA"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                                     fill="currentColor" viewBox="0 0 24 24" style="margin-right: 5px;">
                                                     <path
@@ -404,7 +417,7 @@
                                     </div>
                                 </div>
                                 <div class="card-links">
-                                    <a href="https://www.instagram.com/miramarfoodhall/" target="_blank"
+                                    <a href="https://www.instagram.com/miramarfoodhall/" target="_blank" rel="noopener noreferrer"
                                         aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" fill="currentColor" viewBox="0 0 24 24">
                                             <path
@@ -435,7 +448,7 @@
                                         <div class="detail-label">La Jolla</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=9145+Scholars+Drive+South+La+Jolla+CA+92037"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     fill="currentColor" viewBox="0 0 24 24">
                                                     <path
@@ -447,7 +460,7 @@
                                     </div>
                                 </div>
                                 <div class="card-links">
-                                    <a href="https://www.instagram.com/station8publicmarket/" target="_blank"
+                                    <a href="https://www.instagram.com/station8publicmarket/" target="_blank" rel="noopener noreferrer"
                                         aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20"
                                             height="20" fill="currentColor" viewBox="0 0 24 24">
                                             <path
@@ -478,7 +491,7 @@
                                         <div class="detail-label">Little Italy</div>
                                         <div class="detail-value">
                                             <a href="https://www.google.com/maps/search/?api=1&query=550+W+Date+St+Suite+A+San+Diego+CA+92101"
-                                                target="_blank" class="address-link">
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
                                                     fill="currentColor" viewBox="0 0 24 24">
                                                     <path
@@ -507,36 +520,33 @@
         <section class="about-section" id="about">
             <div class="about-container">
                 <div class="about-content">
-                    <h2>Crafting <span class="highlight">Exceptional</span> Experiences Since 2021</h2>
+                    <h2>A Dynamic Collective of <span class="highlight">Industry Innovators</span></h2>
                     <p>
-                        TIGER HOSPITALITY emerged from a simple vision: to elevate San Diego's culinary landscape
-                        through innovative concepts that celebrate both tradition and innovation. What started as a
-                        single restaurant has grown into a collection of unique dining experiences, each with its own
-                        story to tell.
+                        We are a dynamic collective of industry innovators with extensive experience in executive
+                        leadership, operations, and brand development. Guided by a shared vision of food as a great
+                        connector, we create exceptional community dining experiences across Southern California
+                        through our vibrant food halls and culinary concepts.
                     </p>
                     <p>
-                        Our commitment goes beyond exceptional food and service. We believe in creating spaces where
-                        memories are made, where the community gathers, and where every detail contributes to an
-                        unforgettable experience. From our carefully curated menus to our thoughtfully designed
-                        interiors,
-                        every aspect reflects our dedication to excellence.
+                        Our mission is rooted in bringing people together through innovative culinary experiences
+                        that celebrate flavor, culture, and community. Driven by <span class="value-highlight">Innovation</span>, <span class="value-highlight">Community</span>, <span class="value-highlight">Service</span>, <span class="value-highlight">Excellence</span>, <span class="value-highlight">Passion</span>, and <span class="value-highlight">Integrity</span>, every concept we develop reflects our commitment to creating spaces where unforgettable memories are made.
                     </p>
                     <div class="stats-grid">
-                        <div class="stat-item">
-                            <div class="stat-number">4+</div>
+                        <div class="stat-item stat-counter">
+                            <div class="stat-number" data-target="5">0</div>
                             <div class="stat-label">Unique Concepts</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">500+</div>
+                        <div class="stat-item stat-counter">
+                            <div class="stat-number" data-target="8">0</div>
+                            <div class="stat-label">Locations</div>
+                        </div>
+                        <div class="stat-item stat-counter">
+                            <div class="stat-number" data-target="50">0</div>
                             <div class="stat-label">Team Members</div>
                         </div>
-                        <div class="stat-item">
-                            <div class="stat-number">50K+</div>
+                        <div class="stat-item stat-counter">
+                            <div class="stat-number" data-target="25000">0</div>
                             <div class="stat-label">Monthly Guests</div>
-                        </div>
-                        <div class="stat-item">
-                            <div class="stat-number">15+</div>
-                            <div class="stat-label">Awards Won</div>
                         </div>
                     </div>
                 </div>
@@ -566,6 +576,21 @@
                             <h4>Careers</h4>
                             <p><a href="mailto:careers@tigerhospitalitygroup.com">careers@tigerhospitalitygroup.com</a>
                             </p>
+                        </div>
+                        <div class="contact-item">
+                            <h4>Follow Us</h4>
+                            <div class="contact-social-links">
+                                <a href="https://www.instagram.com/tigerhospitalitygroup/" target="_blank" rel="noopener noreferrer" aria-label="Tiger Hospitality Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                    </svg>
+                                </a>
+                                <a href="https://www.linkedin.com/company/tiger-hospitality-group/" target="_blank" rel="noopener noreferrer" aria-label="Tiger Hospitality LinkedIn">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M19 3A2 2 0 0 1 21 5V19A2 2 0 0 1 19 21H5A2 2 0 0 1 3 19V5A2 2 0 0 1 5 3H19M18.5 18.5V13.2A3.26 3.26 0 0 0 15.24 9.94C14.39 9.94 13.4 10.46 12.92 11.24V10.13H10.13V18.5H12.92V13.57C12.92 12.8 13.54 12.17 14.31 12.17A1.4 1.4 0 0 1 15.71 13.57V18.5H18.5M6.88 8.56A1.68 1.68 0 0 0 8.56 6.88C8.56 5.95 7.81 5.19 6.88 5.19A1.69 1.69 0 0 0 5.19 6.88C5.19 7.81 5.95 8.56 6.88 8.56M8.27 18.5V10.13H5.5V18.5H8.27Z" />
+                                    </svg>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -601,7 +626,7 @@
                             aria-required="true"></textarea>
                     </div>
                     <button type="submit" class="submit-btn">Send Message</button>
-                    <div class="form-message" id="formMessage" role="alert" aria-live="polite"></div>
+                    <div class="form-message" id="formMessage" role="alert" aria-live="assertive" aria-atomic="true"></div>
                 </form>
             </div>
         </section>
@@ -618,12 +643,16 @@
     <footer>
         <div class="footer-content">
             <div class="footer-text">
-                © 2024 TIGER HOSPITALITY. All rights reserved.
+                © 2025 TIGER HOSPITALITY. All rights reserved.
+            </div>
+            <div class="footer-links">
+                <a href="privacy-policy.html">Privacy Policy</a>
+                <span aria-hidden="true">|</span>
+                <a href="#" onclick="alert('We are committed to making our website accessible to all users. If you experience any accessibility issues, please contact us at info@tigerhospitalitygroup.com'); return false;">Accessibility</a>
             </div>
             <div class="social-links">
-                <a href="#">Instagram</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">Facebook</a>
+                <a href="https://www.instagram.com/tigerhospitalitygroup/" target="_blank" rel="noopener noreferrer" aria-label="Tiger Hospitality Instagram">Instagram</a>
+                <a href="https://www.linkedin.com/company/tiger-hospitality-group/" target="_blank" rel="noopener noreferrer" aria-label="Tiger Hospitality LinkedIn">LinkedIn</a>
             </div>
         </div>
     </footer>
@@ -631,7 +660,7 @@
     <!-- Leaflet JS for Interactive Maps -->
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
         integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
-        crossorigin=""></script>
+        crossorigin="anonymous"></script>
 
     <!-- JavaScript -->
     <script src="js/main.js"></script>
