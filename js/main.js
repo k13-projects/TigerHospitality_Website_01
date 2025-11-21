@@ -281,9 +281,9 @@ function initMap() {
         },
         {
             coords: [32.7200, -117.1700],
-            title: 'Little Italy Food Hall',
+            title: 'Global Fork FH',
             type: 'foodhall',
-            address: 'Little Italy, San Diego, CA',
+            address: '550 W. Date Street Suite A, San Diego, CA 92101',
             status: 'Coming Soon',
             concepts: [],
             logo: 'assets/logo.png'
