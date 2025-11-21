@@ -87,7 +87,7 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 25px 50px;
+    padding: 0 25px;
     z-index: 1000;
     transition: all 0.4s ease;
 }
@@ -95,7 +95,7 @@ nav {
 nav.scrolled {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
-    padding: 15px 50px;
+    padding: 0 25px;
 }
 
 .nav-container {
@@ -530,8 +530,9 @@ nav.scrolled {
 
 .divider-text {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    letter-spacing: 8px;
+    font-size: 48px;
+    letter-spacing: 12px;
+    font-weight: 600;
     color: var(--primary-black);
     padding: 0 40px;
     background: var(--soft-white);
@@ -552,7 +553,7 @@ nav.scrolled {
 
 .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 56px;
+    font-size: 36px;
     color: var(--primary-black);
     margin-bottom: 20px;
 }
