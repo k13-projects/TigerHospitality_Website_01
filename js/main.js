@@ -292,9 +292,9 @@ function initMap() {
             coords: [32.8715, -117.2460],
             title: 'Station 8 Public Market',
             type: 'foodhall',
-            address: '9165 South Scholars Drive, La Jolla, CA',
+            address: '9145 Scholars Drive South, La Jolla, CA 92037',
             concepts: [],
-            status: 'Opening August 2026',
+            status: 'Coming Soon',
             instagram: 'https://www.instagram.com/station8publicmarket/',
             logo: 'assets/logos/station8.png'
         },
