@@ -161,7 +161,7 @@ This is a private project for Tiger Hospitality Group. For internal contribution
 
 ## License
 
-All rights reserved - TIGER HOSPITALITY 2024
+All rights reserved - TIGER HOSPITALITY 2025
 
 ## Contact
 
