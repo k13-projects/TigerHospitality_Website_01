@@ -888,7 +888,7 @@ nav.scrolled {
 
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
     gap: 40px;
     margin-top: 50px;
 }
@@ -899,9 +899,10 @@ nav.scrolled {
 
 .stat-number {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 56px;
+    font-size: 32px;
     color: var(--luxury-gold);
     margin-bottom: 10px;
+    letter-spacing: 2px;
 }
 
 .stat-label {
@@ -914,7 +915,7 @@ nav.scrolled {
 .about-image {
     position: relative;
     height: 600px;
-    background: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80');
+    background: url('../assets/Lobster Lab 3 - 5.25.23-79.jpg');
     background-size: cover;
     background-position: center;
     border-radius: 10px;
@@ -1315,6 +1316,11 @@ select:focus {
     .about-container {
         grid-template-columns: 1fr;
         gap: 40px;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 30px;
     }
 
     .contact-content {
