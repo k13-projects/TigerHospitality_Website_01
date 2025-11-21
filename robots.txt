@@ -1,0 +1,10 @@
+# robots.txt for Tiger Hospitality Group
+User-agent: *
+Allow: /
+
+# Disallow admin/internal pages if any exist
+Disallow: /node_modules/
+Disallow: /lighthouse-report.*
+
+# Sitemap location
+Sitemap: https://tigerhospitalitygroup.com/sitemap.xml
