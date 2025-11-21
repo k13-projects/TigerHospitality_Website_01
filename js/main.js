@@ -3,8 +3,19 @@
  * Main JavaScript File
  */
 
+// ===== Scroll Restoration - Always start at top on page load =====
+if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+}
+
+// Immediately scroll to top before anything renders (synchronous)
+window.scrollTo(0, 0);
+
 // ===== Loading Screen =====
 window.addEventListener('load', function () {
+    // Ensure scroll position is at top when loading screen is active
+    window.scrollTo(0, 0);
+
     // Wait for bottom-to-top reveal (2s) + 1 second pause
     setTimeout(() => {
         document.getElementById('loadingScreen').classList.add('fade-out');
