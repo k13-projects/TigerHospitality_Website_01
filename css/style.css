@@ -886,23 +886,29 @@ nav.scrolled {
     margin-bottom: 20px;
 }
 
+/* Core Values Inline Highlight */
+.value-highlight {
+    color: var(--luxury-gold);
+    font-weight: 600;
+}
+
 .stats-grid {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 40px;
-    margin-top: 50px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
+    margin-top: 40px;
 }
 
 .stat-item {
     text-align: center;
 }
 
-.stat-number {
+/* Animated Counter Styling */
+.stat-item.stat-counter .stat-number {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 32px;
+    font-size: 56px;
     color: var(--luxury-gold);
     margin-bottom: 10px;
-    letter-spacing: 2px;
 }
 
 .stat-label {
@@ -1321,6 +1327,11 @@ select:focus {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
+    }
+
+    .core-values {
+        font-size: 14px;
+        padding: 15px 0;
     }
 
     .contact-content {
