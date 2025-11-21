@@ -56,7 +56,11 @@ document.addEventListener('keydown', function (e) {
 // ===== Navbar Scroll Effect =====
 window.addEventListener('scroll', function () {
     const navbar = document.getElementById('navbar');
-    if (window.scrollY > 100) {
+    const heroSection = document.querySelector('.hero-container');
+    const heroHeight = heroSection ? heroSection.offsetHeight : window.innerHeight;
+    const scrollTrigger = heroHeight * 0.9; // 90% of hero height
+
+    if (window.scrollY > scrollTrigger) {
         navbar.classList.add('scrolled');
     } else {
         navbar.classList.remove('scrolled');
@@ -116,11 +120,33 @@ document.querySelectorAll('.section-divider').forEach(divider => {
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const targetId = this.getAttribute('href');
+        const target = document.querySelector(targetId);
+
         if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
+            const navbar = document.getElementById('navbar');
+            const navbarHeight = navbar ? navbar.offsetHeight : 0;
+
+            // For sections with dividers, scroll to show the divider
+            const divider = target.previousElementSibling;
+            if (divider && divider.classList.contains('section-divider')) {
+                const elementPosition = divider.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - navbarHeight; // Position divider just below navbar
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+
+            // Default scroll behavior for sections without dividers
+            const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - navbarHeight - 20;
+
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
             });
         }
     });
@@ -245,16 +271,6 @@ function initMap() {
     // Food Halls and Standalone Locations
     const locations = [
         {
-            coords: [33.1142, -117.3085],
-            title: 'Windmill Food Hall',
-            type: 'foodhall',
-            address: '890 Palomar Airport Rd, Carlsbad, CA',
-            concepts: ['Lobster Lab', 'Cosmos', 'La Vida'],
-            website: 'https://www.windmillfoodhall.com/',
-            instagram: 'https://www.instagram.com/windmillfoodhall/',
-            logo: 'assets/logos/windmill.png'
-        },
-        {
             coords: [32.7197, -117.1697],
             title: 'Good Enough',
             type: 'standalone',
@@ -264,10 +280,19 @@ function initMap() {
             logo: 'assets/logos/goodenough.png'
         },
         {
+            coords: [33.4267, -117.6112],
+            title: 'Egg n Out (Breakfast Club)',
+            type: 'standalone',
+            address: '1720 North El Camino Real, San Clemente, CA',
+            description: 'Breakfast Concept',
+            status: 'Coming Soon',
+            logo: 'assets/logo.png'
+        },
+        {
             coords: [32.7200, -117.1700],
-            title: 'Little Italy Food Hall',
+            title: 'Global Fork FH',
             type: 'foodhall',
-            address: 'Little Italy, San Diego, CA',
+            address: '550 W. Date Street Suite A, San Diego, CA 92101',
             status: 'Coming Soon',
             concepts: [],
             logo: 'assets/logo.png'
@@ -276,9 +301,9 @@ function initMap() {
             coords: [32.8715, -117.2460],
             title: 'Station 8 Public Market',
             type: 'foodhall',
-            address: '9165 South Scholars Drive, La Jolla, CA',
+            address: '9145 Scholars Drive South, La Jolla, CA 92037',
             concepts: [],
-            status: 'Opening August 2026',
+            status: 'Coming Soon',
             instagram: 'https://www.instagram.com/station8publicmarket/',
             logo: 'assets/logos/station8.png'
         },
@@ -287,7 +312,7 @@ function initMap() {
             title: 'Miramar Food Hall',
             type: 'foodhall',
             address: '1720 North El Camino Real, San Clemente, CA',
-            concepts: ['Lobster Lab', 'Cosmos', 'La Vida'],
+            concepts: ['Lobster Lab', 'Cosmos', 'La Vida', 'Egg n Out'],
             status: 'Coming Soon',
             instagram: 'https://www.instagram.com/miramarfoodhall/',
             logo: 'assets/logos/miramar.png'

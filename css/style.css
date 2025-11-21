@@ -87,17 +87,15 @@ nav {
     position: fixed;
     top: 0;
     width: 100%;
-    padding: 25px 50px;
+    padding: 0 25px;
     z-index: 1000;
     transition: all 0.4s ease;
-    mix-blend-mode: difference;
 }
 
 nav.scrolled {
     background: rgba(10, 10, 10, 0.95);
     backdrop-filter: blur(10px);
-    padding: 15px 50px;
-    mix-blend-mode: normal;
+    padding: 0 25px;
 }
 
 .nav-container {
@@ -109,11 +107,20 @@ nav.scrolled {
 }
 
 .logo {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px;
-    color: var(--soft-white);
-    letter-spacing: 4px;
     text-decoration: none;
+    display: flex;
+    align-items: center;
+}
+
+.logo-image {
+    height: 75px;
+    width: auto;
+    transition: opacity 0.3s ease;
+    filter: drop-shadow(0 2px 20px rgba(0, 0, 0, 0.5));
+}
+
+.logo-image:hover {
+    opacity: 0.8;
 }
 
 .nav-links {
@@ -125,12 +132,13 @@ nav.scrolled {
 .nav-links a {
     color: var(--soft-white);
     text-decoration: none;
-    font-size: 13px;
+    font-size: 19.5px;
     font-weight: 500;
     letter-spacing: 2px;
     text-transform: uppercase;
     transition: color 0.3s ease;
     position: relative;
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .nav-links a::after {
@@ -331,13 +339,13 @@ nav.scrolled {
 
 .hero-subtitle {
     font-size: 18px;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 3px;
     text-transform: uppercase;
     opacity: 0;
     transform: translateY(30px);
     animation: fadeInUp 1s ease-out 2.7s forwards;
-    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 @keyframes fadeInUp {
@@ -522,8 +530,9 @@ nav.scrolled {
 
 .divider-text {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 24px;
-    letter-spacing: 8px;
+    font-size: 48px;
+    letter-spacing: 12px;
+    font-weight: 400;
     color: var(--primary-black);
     padding: 0 40px;
     background: var(--soft-white);
@@ -544,7 +553,7 @@ nav.scrolled {
 
 .section-title {
     font-family: 'Playfair Display', serif;
-    font-size: 56px;
+    font-size: 36px;
     color: var(--primary-black);
     margin-bottom: 20px;
 }
@@ -624,84 +633,27 @@ nav.scrolled {
 }
 
 .concept-card:nth-child(2) .card-image {
-    background-image: url('../assets/cards/cosmos 1-49.jpg');
-    background-size: 120%;
-    background-position: center 60%;
+    background-image: url('../assets/cards/bbq chicken.jpg');
+    background-size: 100%;
+    background-position: center 65%;
     background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(3) .card-image {
     background-image: url('../assets/cards/La Vida.jpg');
-    background-size: 120%;
-    background-position: center 65%;
+    background-size: 100%;
+    background-position: center 0%;
     background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(4) .card-image {
-    background-image: url('../assets/cards/Good Enough.png');
-    background-size: 140%;
-    background-position: center 75%;
+    background-image: url('../assets/cards/good enough card.png');
+    background-size: 100%;
+    background-position: center 30%;
     background-repeat: no-repeat;
 }
 
 .concept-card:nth-child(5) .card-image {
-    background-image: url('../assets/cards/WINDMILL FOOD HALL LOGO (2).png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}
-
-.concept-card:nth-child(6) .card-image {
-    background-image: url('../assets/cards/MIRAMAR FOODHALL LOGO (1).png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}
-
-.concept-card:nth-child(7) .card-image {
-    background-image: url('../assets/cards/STATION8 LOCKUP.png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}
-
-.concept-card:nth-child(8) .card-image {
-    background-image: url('../assets/cards/WINDMILL FOOD HALL LOGO (2).png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}
-
-/* Food Halls Subsection - Override with logos */
-#food-halls .concept-card:nth-child(1) .card-image {
-    background-image: url('../assets/cards/WINDMILL FOOD HALL LOGO (2).png');
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}
-
-#food-halls .concept-card:nth-child(2) .card-image {
-    background-image: url('../assets/cards/MIRAMAR FOODHALL LOGO (1).png');
-    background-size: 60%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}
-
-#food-halls .concept-card:nth-child(3) .card-image {
-    background-image: url('../assets/cards/STATION8 LOCKUP.png');
-    background-size: 60%;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-color: #f5f5f5;
-}
-
-#food-halls .concept-card:nth-child(4) .card-image {
     background-image: none;
     background-size: contain;
     background-position: center;
@@ -710,7 +662,47 @@ nav.scrolled {
     position: relative;
 }
 
-#food-halls .concept-card:nth-child(4) .card-image::before {
+.concept-card:nth-child(5) .card-image::before {
+    content: 'COMING SOON';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(-15deg);
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: bold;
+    color: #333;
+    letter-spacing: 8px;
+    opacity: 0.3;
+}
+
+/* Food Halls Subsection - Override with logos */
+#food-halls .concept-card:nth-child(1) .card-image {
+    background-image: url('../assets/cards/MIRAMAR FOODHALL LOGO (1).png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+#food-halls .concept-card:nth-child(2) .card-image {
+    background-image: url('../assets/cards/STATION8 LOCKUP.png');
+    background-size: 60%;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+}
+
+#food-halls .concept-card:nth-child(3) .card-image {
+    background-image: none;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+#food-halls .concept-card:nth-child(3) .card-image::before {
     content: 'COMING SOON';
     position: absolute;
     top: 50%;
@@ -762,28 +754,44 @@ nav.scrolled {
 }
 
 .card-details {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 20px;
+    padding-top: 15px;
     border-top: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .detail-item {
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Center align when there's only one location */
+.card-details:has(.detail-item:only-child) {
+    grid-template-columns: 1fr;
+    justify-items: center;
+}
+
+.card-details:has(.detail-item:only-child) .detail-item {
+    max-width: 300px;
 }
 
 .detail-label {
-    font-size: 11px;
+    font-size: 13px;
     text-transform: uppercase;
     letter-spacing: 1px;
     color: rgba(255, 255, 255, 0.6);
-    margin-bottom: 5px;
+    margin-bottom: 4px;
+    font-weight: 500;
 }
 
 .detail-value {
-    font-size: 16px;
+    font-size: 13px;
     font-weight: 600;
     color: var(--luxury-gold);
+    line-height: 1.3;
 }
 
 .address-link {
@@ -791,7 +799,9 @@ nav.scrolled {
     text-decoration: none;
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     transition: all 0.3s ease;
+    font-size: 12px;
 }
 
 .address-link:hover {
@@ -801,6 +811,9 @@ nav.scrolled {
 
 .address-link svg {
     flex-shrink: 0;
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
 }
 
 .card-links {
