@@ -67,7 +67,7 @@ TigerHospitality_Website_01/
 ### Food Halls
 - **Miramar Food Hall** - San Clemente (Coming Soon)
 - **Station 8 Public Market** - La Jolla (Coming Soon)
-- **Global Fork FH** - Little Italy (Coming Soon)
+- **Global Fork** - Little Italy (Coming Soon)
 
 ## Setup
 

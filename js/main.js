@@ -306,7 +306,7 @@ function initMap() {
         },
         {
             coords: [32.7200, -117.1700],
-            title: 'Global Fork FH',
+            title: 'Global Fork',
             type: 'foodhall',
             address: '550 W. Date Street Suite A, San Diego, CA 92101',
             status: 'Coming Soon',
