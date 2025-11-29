@@ -59,7 +59,7 @@ TigerHospitality_Website_01/
 
 ### Culinary Concepts
 - **Lobster Lab** - Seafood concept (Carlsbad + Coming Soon locations)
-- **Cosmos** - Premium burgers (Carlsbad + Coming Soon locations)
+- **Cosmos Burger** - Premium burgers (Carlsbad + Coming Soon locations)
 - **La Vida** - Healthy eats (Carlsbad + Coming Soon locations)
 - **Good Enough** - Craft cocktails & tapas (Little Italy)
 - **Egg n Out** - Breakfast club (San Clemente - Coming Soon)
@@ -67,7 +67,7 @@ TigerHospitality_Website_01/
 ### Food Halls
 - **Miramar Food Hall** - San Clemente (Coming Soon)
 - **Station 8 Public Market** - La Jolla (Coming Soon)
-- **Global Fork FH** - Little Italy (Coming Soon)
+- **Global Fork** - Little Italy (Coming Soon)
 
 ## Setup
 

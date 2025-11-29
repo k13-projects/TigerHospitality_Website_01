@@ -306,7 +306,7 @@ function initMap() {
         },
         {
             coords: [32.7200, -117.1700],
-            title: 'Global Fork FH',
+            title: 'Global Fork',
             type: 'foodhall',
             address: '550 W. Date Street Suite A, San Diego, CA 92101',
             status: 'Coming Soon',
@@ -328,7 +328,7 @@ function initMap() {
             title: 'Miramar Food Hall',
             type: 'foodhall',
             address: '1720 North El Camino Real, San Clemente, CA',
-            concepts: ['Lobster Lab', 'Cosmos', 'La Vida', 'Egg n Out'],
+            concepts: ['Lobster Lab', 'Cosmos Burger', 'La Vida', 'Egg n Out'],
             status: 'Coming Soon',
             instagram: 'https://www.instagram.com/miramarfoodhall/',
             logo: 'assets/logos/miramar.png'

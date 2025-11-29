@@ -37,7 +37,7 @@
 2. Search for existing profiles for:
    - Tiger Hospitality Group
    - Lobster Lab
-   - Cosmos
+   - Cosmos Burger
    - La Vida
    - Good Enough
    - Egg n Out
