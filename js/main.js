@@ -328,7 +328,7 @@ function initMap() {
             title: 'Miramar Food Hall',
             type: 'foodhall',
             address: '1720 North El Camino Real, San Clemente, CA',
-            concepts: ['Lobster Lab', 'Cosmos', 'La Vida', 'Egg n Out'],
+            concepts: ['Lobster Lab', 'Cosmos Burger', 'La Vida', 'Egg n Out'],
             status: 'Coming Soon',
             instagram: 'https://www.instagram.com/miramarfoodhall/',
             logo: 'assets/logos/miramar.png'
