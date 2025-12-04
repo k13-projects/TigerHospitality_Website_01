@@ -23,7 +23,7 @@
 }
 
 body {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Public Sans', sans-serif;
     overflow-x: hidden;
     background: var(--soft-white);
 }
@@ -533,7 +533,7 @@ nav.scrolled {
 }
 
 .divider-text {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 48px;
     letter-spacing: 12px;
     font-weight: 400;
@@ -908,7 +908,7 @@ nav.scrolled {
 
 /* Animated Counter Styling */
 .stat-item.stat-counter .stat-number {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: 'Poppins', sans-serif;
     font-size: 56px;
     color: var(--luxury-gold);
     margin-bottom: 10px;
@@ -1067,7 +1067,7 @@ nav.scrolled {
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 5px;
     color: var(--soft-white);
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Public Sans', sans-serif;
     font-size: 14px;
     transition: all 0.3s ease;
 }
@@ -1097,7 +1097,7 @@ nav.scrolled {
     color: var(--primary-black);
     border: none;
     border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Public Sans', sans-serif;
     font-size: 14px;
     font-weight: 600;
     text-transform: uppercase;
