@@ -961,6 +961,66 @@ nav.scrolled {
     z-index: -1;
 }
 
+/* Core Values Section */
+.core-values-section {
+    padding: 80px 50px;
+    background: var(--light-gray);
+    text-align: center;
+}
+
+.core-values-container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.core-values-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    color: var(--primary-black);
+    margin-bottom: 50px;
+}
+
+.core-values-list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.core-value-item {
+    color: var(--luxury-gold);
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 0 20px;
+    position: relative;
+}
+
+.core-value-item:not(:last-child)::after {
+    content: '—';
+    position: absolute;
+    right: -15px;
+    color: var(--luxury-gold-light);
+}
+
+@media (max-width: 768px) {
+    .core-values-list {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .core-value-item {
+        font-size: 16px;
+        padding: 10px 0;
+    }
+
+    .core-value-item:not(:last-child)::after {
+        display: none;
+    }
+}
+
 /* Contact Section */
 .contact-section {
     padding: 100px 50px;
