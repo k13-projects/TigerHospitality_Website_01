@@ -19,13 +19,20 @@ window.addEventListener('load', function () {
     // Ensure scroll position is at top when loading screen is active
     window.scrollTo(0, 0);
 
-    // Wait for bottom-to-top reveal (2s) + 1 second pause
+    // Wait for bottom-to-top reveal (1.2s) + brief pause
     setTimeout(() => {
         document.getElementById('loadingScreen').classList.add('fade-out');
         setTimeout(() => {
             document.getElementById('loadingScreen').style.display = 'none';
-        }, 800);
-    }, 2100); // 2000ms for reveal + 100ms pause
+        }, 600);
+    }, 1400); // 1200ms for reveal + 200ms pause
+});
+
+// ===== Card Flip Click Support (for touch devices) =====
+document.querySelectorAll('.concept-card').forEach(card => {
+    card.addEventListener('click', function() {
+        this.classList.toggle('flipped');
+    });
 });
 
 // ===== Mobile Menu Toggle =====
