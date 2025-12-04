@@ -611,6 +611,23 @@ nav.scrolled {
 
 .card-front {
     background: var(--soft-white);
+    position: relative;
+}
+
+/* Coming Soon Badge */
+.coming-soon-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: var(--luxury-gold);
+    color: var(--primary-black);
+    padding: 6px 14px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    border-radius: 3px;
+    z-index: 10;
 }
 
 .card-back {
