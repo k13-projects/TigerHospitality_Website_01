@@ -74,7 +74,6 @@ body {
     bottom: 0;
     background: var(--primary-black);
     animation: revealUp 1.2s cubic-bezier(0.65, 0, 0.35, 1) forwards;
-    will-change: transform;
 }
 
 @keyframes revealUp {
@@ -324,8 +323,7 @@ nav.scrolled {
     background-size: cover;
     background-position: center;
     opacity: 0;
-    transition: opacity 1.5s ease-in-out, transform 6s ease;
-    transform: scale(1.1);
+    transition: opacity 1s ease-in-out;
 }
 
 .hero-slide::after {
@@ -341,7 +339,6 @@ nav.scrolled {
 
 .hero-slide.active {
     opacity: 1;
-    transform: scale(1);
 }
 
 
@@ -349,34 +346,32 @@ nav.scrolled {
 .hero-content {
     position: absolute;
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
+    left: 80px;
+    transform: translateY(-50%);
+    text-align: left;
     color: var(--soft-white);
     z-index: 10;
+    max-width: 650px;
 }
 
 .hero-title {
-    font-family: 'Playfair Display', serif;
-    font-size: clamp(48px, 8vw, 120px);
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(40px, 6vw, 80px);
     font-weight: 700;
     line-height: 1.1;
     margin-bottom: 20px;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease-out 2.5s forwards;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
+    letter-spacing: 1px;
 }
 
 .hero-subtitle {
-    font-size: 18px;
-    font-weight: 500;
-    letter-spacing: 3px;
+    font-family: 'Public Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    opacity: 0;
-    transform: translateY(30px);
-    animation: fadeInUp 1s ease-out 2.7s forwards;
-    text-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
+    text-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+    line-height: 1.6;
 }
 
 @keyframes fadeInUp {
@@ -416,13 +411,11 @@ nav.scrolled {
     position: relative;
     overflow: hidden;
     opacity: 0;
-    transform: scale(0.8);
-    transition: all 0.6s ease;
+    transition: opacity 0.5s ease;
 }
 
 .collage-item.show {
     opacity: 1;
-    transform: scale(1);
 }
 
 .collage-item:nth-child(1) {
@@ -463,7 +456,6 @@ nav.scrolled {
     height: 100%;
     background-size: cover;
     background-position: center;
-    transition: transform 0.6s ease;
 }
 
 .collage-item:nth-child(1) .collage-image {
@@ -496,9 +488,6 @@ nav.scrolled {
         url('https://images.unsplash.com/photo-1543007630-9710e4a00a20?w=600&q=80');
 }
 
-.collage-item:hover .collage-image {
-    transform: scale(1.1);
-}
 
 .collage-overlay {
     position: absolute;
@@ -507,12 +496,12 @@ nav.scrolled {
     right: 0;
     background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
     padding: 30px;
-    transform: translateY(100%);
-    transition: transform 0.4s ease;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .collage-item:hover .collage-overlay {
-    transform: translateY(0);
+    opacity: 1;
 }
 
 .collage-title {
@@ -617,9 +606,8 @@ nav.scrolled {
     width: 100%;
     height: 100%;
     text-align: center;
-    transition: transform 0.6s ease;
+    transition: transform 0.5s ease;
     transform-style: preserve-3d;
-    will-change: transform;
 }
 
 .concept-card:hover .card-inner {
@@ -629,6 +617,8 @@ nav.scrolled {
 .card-front,
 .card-back {
     position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
     -webkit-backface-visibility: hidden;
@@ -648,20 +638,27 @@ nav.scrolled {
     position: relative;
 }
 
-/* Coming Soon Badge */
+/* Coming Soon Badge - Stamp Style */
 .coming-soon-badge {
     position: absolute;
-    top: 15px;
-    right: 15px;
-    background: var(--luxury-gold);
-    color: var(--primary-black);
-    padding: 6px 14px;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1px;
+    top: 20px;
+    right: 20px;
+    background: transparent;
+    color: #c41e3a;
+    padding: 8px 16px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 2px;
     text-transform: uppercase;
-    border-radius: 3px;
+    border: 3px solid #c41e3a;
+    border-radius: 4px;
     z-index: 10;
+    transform: rotate(-12deg);
+    box-shadow:
+        inset 0 0 0 1px #c41e3a,
+        2px 2px 0 rgba(0, 0, 0, 0.1);
+    opacity: 0.9;
 }
 
 .card-back {
@@ -862,7 +859,6 @@ nav.scrolled {
 
 .address-link:hover {
     color: var(--soft-white);
-    transform: translateX(3px);
 }
 
 .address-link svg {
@@ -896,7 +892,6 @@ nav.scrolled {
 
 .card-links a:hover {
     color: var(--soft-white);
-    transform: scale(1.2);
 }
 
 .subsection {
@@ -1087,7 +1082,6 @@ nav.scrolled {
     opacity: 0;
     transform: translateX(-30px);
     transition: opacity 0.4s ease, transform 0.4s ease;
-    will-change: opacity, transform;
 }
 
 .timeline-item.visible {
@@ -1285,7 +1279,6 @@ nav.scrolled {
 .contact-social-links a:hover {
     background: var(--luxury-gold);
     color: var(--primary-black);
-    transform: translateY(-3px);
 }
 
 .contact-social-links svg {
@@ -1364,12 +1357,6 @@ nav.scrolled {
 
 .submit-btn:hover {
     background: #d4b76a;
-    transform: translateY(-2px);
-    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.3);
-}
-
-.submit-btn:active {
-    transform: translateY(0);
 }
 
 .form-message {
@@ -1430,21 +1417,6 @@ nav.scrolled {
 
 .custom-marker-logo {
     cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-.custom-marker-logo:hover {
-    transform: scale(1.15) translateY(-3px);
-    filter: brightness(1.1);
-}
-
-.custom-marker-logo > div {
-    transition: all 0.3s ease;
-}
-
-.custom-marker-logo:hover > div {
-    border-color: #fafafa;
-    box-shadow: 0 6px 20px rgba(201, 169, 97, 0.6);
 }
 
 /* Leaflet controls styling to match theme */
@@ -1458,7 +1430,6 @@ nav.scrolled {
 .leaflet-control-zoom a:hover {
     background-color: var(--luxury-gold) !important;
     color: var(--primary-black) !important;
-    transform: scale(1.05);
 }
 
 .leaflet-bar {
