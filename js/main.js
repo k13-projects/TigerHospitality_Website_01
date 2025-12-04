@@ -130,6 +130,29 @@ document.querySelectorAll('.section-divider').forEach(divider => {
     lineObserver.observe(divider);
 });
 
+// ===== Timeline Animation with Reversible Scroll Effect =====
+const timelineObserverOptions = {
+    threshold: 0.2,
+    rootMargin: '0px'
+};
+
+const timelineObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Scrolling into view - animate in
+            entry.target.classList.add('visible');
+        } else {
+            // Scrolling out of view - animate out (reverse)
+            entry.target.classList.remove('visible');
+        }
+    });
+}, timelineObserverOptions);
+
+// Observe all timeline items
+document.querySelectorAll('.timeline-item').forEach(item => {
+    timelineObserver.observe(item);
+});
+
 // ===== Smooth Scrolling for Navigation Links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
