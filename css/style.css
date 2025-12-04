@@ -1359,20 +1359,23 @@ nav.scrolled {
 
 /* Map Container */
 .map-section {
-    padding: 0;
+    padding: 40px 50px;
     background: var(--light-gray);
 }
 
 .map-container {
-    width: 100%;
-    height: 500px;
+    max-width: 1000px;
+    margin: 0 auto;
+    height: 450px;
     position: relative;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 #map {
     width: 100%;
     height: 100%;
-    filter: grayscale(30%);
 }
 
 /* Leaflet Map Custom Styles */
