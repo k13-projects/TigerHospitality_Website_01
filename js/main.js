@@ -14,6 +14,26 @@ if ('scrollRestoration' in history) {
 // Immediately scroll to top before anything renders (synchronous)
 window.scrollTo(0, 0);
 
+// ===== EmailJS Configuration =====
+// TODO: Replace these placeholder values with your actual EmailJS credentials
+const EMAILJS_CONFIG = {
+    publicKey: 'YOUR_PUBLIC_KEY_HERE',           // Get from EmailJS Dashboard > Account > General
+    serviceId: 'YOUR_SERVICE_ID_HERE',           // Get from EmailJS Dashboard > Email Services
+    mainTemplateId: 'YOUR_MAIN_TEMPLATE_ID_HERE', // Get from EmailJS Dashboard > Email Templates (Main Notification)
+    autoReplyTemplateId: 'YOUR_AUTOREPLY_TEMPLATE_ID_HERE' // Get from EmailJS Dashboard > Email Templates (Auto-Reply)
+};
+
+// Initialize EmailJS
+(function() {
+    if (typeof emailjs !== 'undefined') {
+        emailjs.init(EMAILJS_CONFIG.publicKey);
+    }
+})();
+
+// Rate limiting: prevent spam submissions
+let lastSubmissionTime = 0;
+const SUBMISSION_COOLDOWN = 30000; // 30 seconds between submissions
+
 // ===== Loading Screen =====
 window.addEventListener('load', function () {
     // Ensure scroll position is at top when loading screen is active
@@ -206,16 +226,26 @@ if (statsGrid) {
     statsObserver.observe(statsGrid);
 }
 
-// ===== Contact Form Validation and Submission =====
+// ===== Contact Form Validation and Submission with EmailJS =====
 const contactForm = document.getElementById('contactForm');
 const formMessage = document.getElementById('formMessage');
+const submitBtn = contactForm.querySelector('.submit-btn');
 
-contactForm.addEventListener('submit', function (e) {
+contactForm.addEventListener('submit', async function (e) {
     e.preventDefault();
+
+    // Rate limiting check
+    const now = Date.now();
+    if (now - lastSubmissionTime < SUBMISSION_COOLDOWN) {
+        const remainingSeconds = Math.ceil((SUBMISSION_COOLDOWN - (now - lastSubmissionTime)) / 1000);
+        showFormMessage(`Please wait ${remainingSeconds} seconds before submitting again.`, 'error');
+        return;
+    }
 
     // Get form values
     const name = document.getElementById('name').value.trim();
     const email = document.getElementById('email').value.trim();
+    const phone = document.getElementById('phone')?.value.trim() || 'Not provided';
     const inquiry = document.getElementById('inquiry').value;
     const message = document.getElementById('message').value.trim();
 
@@ -232,18 +262,68 @@ contactForm.addEventListener('submit', function (e) {
         return;
     }
 
-    // Simulate form submission (replace with actual backend endpoint)
-    showFormMessage('Sending message...', 'success');
+    // Check if EmailJS is loaded and configured
+    if (typeof emailjs === 'undefined') {
+        showFormMessage('Email service is not available. Please try again later.', 'error');
+        console.error('EmailJS SDK not loaded');
+        return;
+    }
 
-    setTimeout(() => {
-        showFormMessage('Thank you for your message! We\'ll get back to you soon.', 'success');
+    if (EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY_HERE') {
+        showFormMessage('Email service is not configured. Please contact us directly at info@tigerhospitalitygroup.com', 'error');
+        console.warn('EmailJS credentials not configured');
+        return;
+    }
+
+    // Disable submit button and show sending state
+    submitBtn.disabled = true;
+    submitBtn.textContent = 'Sending...';
+    showFormMessage('Sending your message...', 'success');
+
+    // Prepare template parameters
+    const templateParams = {
+        from_name: name,
+        from_email: email,
+        phone: phone,
+        inquiry_type: inquiry,
+        message: message
+    };
+
+    try {
+        // Send main notification email
+        await emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.mainTemplateId,
+            templateParams
+        );
+
+        // Send auto-reply to the user
+        await emailjs.send(
+            EMAILJS_CONFIG.serviceId,
+            EMAILJS_CONFIG.autoReplyTemplateId,
+            templateParams
+        );
+
+        // Update rate limiting timestamp
+        lastSubmissionTime = Date.now();
+
+        // Success
+        showFormMessage('Thank you for your message! We\'ll get back to you within 24-48 hours.', 'success');
         contactForm.reset();
 
-        // Hide message after 5 seconds
+        // Hide message after 8 seconds
         setTimeout(() => {
             formMessage.style.display = 'none';
-        }, 5000);
-    }, 1500);
+        }, 8000);
+
+    } catch (error) {
+        console.error('EmailJS Error:', error);
+        showFormMessage('Failed to send message. Please try again or email us directly at info@tigerhospitalitygroup.com', 'error');
+    } finally {
+        // Re-enable submit button
+        submitBtn.disabled = false;
+        submitBtn.textContent = 'Send Message';
+    }
 });
 
 function showFormMessage(message, type) {
