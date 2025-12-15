@@ -1500,18 +1500,14 @@ nav.scrolled {
 
 /* Map Container */
 .map-section {
-    padding: 40px 50px;
+    padding: 0;
     background: var(--light-gray);
 }
 
 .map-container {
-    max-width: 1200px;
-    margin: 0 auto;
-    height: 450px;
+    width: 100%;
+    height: 500px;
     position: relative;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 #map {
