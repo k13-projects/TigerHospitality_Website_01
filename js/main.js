@@ -282,6 +282,116 @@ function showFormMessage(message, type) {
     formMessage.style.display = 'block';
 }
 
+// ===== Conditional File Upload for Career Applications =====
+const inquirySelect = document.getElementById('inquiry');
+const fileUploadGroup = document.getElementById('fileUploadGroup');
+const documentsInput = document.getElementById('documents');
+const fileList = document.getElementById('fileList');
+
+// Store selected files (since we can't modify FileList directly)
+let selectedFiles = [];
+
+inquirySelect.addEventListener('change', function() {
+    if (this.value === 'career') {
+        fileUploadGroup.style.display = 'block';
+    } else {
+        fileUploadGroup.style.display = 'none';
+        documentsInput.value = '';
+        selectedFiles = [];
+        renderFileList();
+    }
+});
+
+// Format file size for display
+function formatFileSize(bytes) {
+    if (bytes < 1024) return bytes + ' B';
+    if (bytes < 1024 * 1024) return (bytes / 1024).toFixed(1) + ' KB';
+    return (bytes / (1024 * 1024)).toFixed(1) + ' MB';
+}
+
+// Render the file list UI and update input state
+function renderFileList() {
+    const maxFiles = 2;
+    fileList.innerHTML = '';
+
+    selectedFiles.forEach((file, index) => {
+        const fileItem = document.createElement('div');
+        fileItem.className = 'file-item';
+        fileItem.innerHTML = `
+            <div class="file-item-info">
+                <svg class="file-item-icon" width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M14,2H6A2,2 0 0,0 4,4V20A2,2 0 0,0 6,22H18A2,2 0 0,0 20,20V8L14,2M18,20H6V4H13V9H18V20Z"/>
+                </svg>
+                <span class="file-item-name">${file.name}</span>
+                <span class="file-item-size">${formatFileSize(file.size)}</span>
+            </div>
+            <button type="button" class="file-item-remove" data-index="${index}" aria-label="Remove ${file.name}">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M19,6.41L17.59,5L12,10.59L6.41,5L5,6.41L10.59,12L5,17.59L6.41,19L12,13.41L17.59,19L19,17.59L13.41,12L19,6.41Z"/>
+                </svg>
+            </button>
+        `;
+        fileList.appendChild(fileItem);
+    });
+
+    // Add click handlers for remove buttons
+    fileList.querySelectorAll('.file-item-remove').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const index = parseInt(this.dataset.index);
+            selectedFiles.splice(index, 1);
+            renderFileList();
+        });
+    });
+
+    // Handle max files reached state
+    const existingMessage = document.getElementById('fileLimitMessage');
+    if (selectedFiles.length >= maxFiles) {
+        documentsInput.disabled = true;
+        if (!existingMessage) {
+            const limitMessage = document.createElement('div');
+            limitMessage.id = 'fileLimitMessage';
+            limitMessage.className = 'file-limit-message';
+            limitMessage.innerHTML = '⚠️ Maximum 2 files reached. Remove a file to upload another.';
+            fileList.parentNode.insertBefore(limitMessage, fileList);
+        }
+    } else {
+        documentsInput.disabled = false;
+        if (existingMessage) {
+            existingMessage.remove();
+        }
+    }
+}
+
+// Validate and handle file selection
+documentsInput.addEventListener('change', function() {
+    const files = Array.from(this.files);
+    const maxFiles = 2;
+    const maxSize = 5 * 1024 * 1024; // 5MB
+
+    // Check total file count
+    if (selectedFiles.length + files.length > maxFiles) {
+        showFormMessage(`You can only upload up to ${maxFiles} files total.`, 'error');
+        this.value = '';
+        return;
+    }
+
+    // Validate each file
+    for (let file of files) {
+        if (file.size > maxSize) {
+            showFormMessage(`File "${file.name}" exceeds 5MB limit.`, 'error');
+            this.value = '';
+            return;
+        }
+    }
+
+    // Add files to selected list
+    selectedFiles = [...selectedFiles, ...files];
+    renderFileList();
+
+    // Clear input so same file can be selected again if removed
+    this.value = '';
+});
+
 // ===== Interactive Map with Leaflet (Free, No API Key Required) =====
 function initMap() {
     // Check if Leaflet is loaded

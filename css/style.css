@@ -1359,6 +1359,125 @@ nav.scrolled {
     background: #d4b76a;
 }
 
+/* File Upload Styles */
+.file-upload-group {
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.form-group input[type="file"] {
+    padding: 12px;
+    cursor: pointer;
+}
+
+.form-group input[type="file"]::file-selector-button {
+    background: var(--luxury-gold);
+    color: var(--primary-black);
+    border: none;
+    padding: 8px 16px;
+    margin-right: 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s ease;
+}
+
+.form-group input[type="file"]::file-selector-button:hover {
+    background: #d4b76a;
+}
+
+.form-group input[type="file"]:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.form-group input[type="file"]:disabled::file-selector-button {
+    background: #666;
+    cursor: not-allowed;
+}
+
+.file-limit-message {
+    display: block;
+    margin-top: 8px;
+    padding: 8px 12px;
+    background: rgba(255, 193, 7, 0.15);
+    border: 1px solid rgba(255, 193, 7, 0.3);
+    border-radius: 4px;
+    font-size: 12px;
+    color: #ffc107;
+}
+
+.file-help {
+    display: block;
+    margin-top: 8px;
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.file-list {
+    margin-top: 12px;
+}
+
+.file-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 14px;
+    border-radius: 6px;
+    margin-bottom: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.file-item-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    overflow: hidden;
+}
+
+.file-item-icon {
+    color: var(--luxury-gold);
+    flex-shrink: 0;
+}
+
+.file-item-name {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.9);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-item-size {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.5);
+    flex-shrink: 0;
+}
+
+.file-item-remove {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.file-item-remove:hover {
+    background: rgba(244, 67, 54, 0.2);
+    color: #f44336;
+}
+
 .form-message {
     margin-top: 20px;
     padding: 15px;
