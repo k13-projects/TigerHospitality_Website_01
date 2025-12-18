@@ -171,6 +171,18 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             const navbar = document.getElementById('navbar');
             const navbarHeight = navbar ? navbar.offsetHeight : 0;
 
+            // For contact section, scroll directly to the section (skip the white divider)
+            if (targetId === '#contact') {
+                const elementPosition = target.getBoundingClientRect().top + window.pageYOffset;
+                const offsetPosition = elementPosition - navbarHeight;
+
+                window.scrollTo({
+                    top: offsetPosition,
+                    behavior: 'smooth'
+                });
+                return;
+            }
+
             // For sections with dividers, scroll to show the divider
             const divider = target.previousElementSibling;
             if (divider && divider.classList.contains('section-divider')) {

@@ -136,18 +136,18 @@ nav.scrolled {
 }
 
 .logo-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: 18px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--soft-white);
     letter-spacing: 2px;
     text-transform: uppercase;
 }
 
 .logo-tagline {
-    font-family: 'Public Sans', sans-serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: 12px;
-    font-weight: 400;
+    font-weight: 600;
     color: var(--luxury-gold-light);
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -355,9 +355,9 @@ nav.scrolled {
 }
 
 .hero-title {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: clamp(40px, 6vw, 80px);
-    font-weight: 700;
+    font-weight: 400;
     line-height: 1.1;
     margin-bottom: 20px;
     text-shadow: 0 4px 30px rgba(0, 0, 0, 0.6);
@@ -521,7 +521,7 @@ nav.scrolled {
 .section-divider {
     position: relative;
     width: 100%;
-    height: 100px;
+    height: 200px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -549,7 +549,7 @@ nav.scrolled {
 }
 
 .divider-text {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 48px;
     letter-spacing: 12px;
     font-weight: 400;
@@ -562,18 +562,17 @@ nav.scrolled {
 
 /* Our Concepts Section with Flip Cards */
 .concepts-section {
-    padding: 120px 50px 100px;
+    padding: 100px 50px 100px;
     background: var(--light-gray);
 }
 
 .section-header {
     text-align: center;
     margin-bottom: 80px;
-    padding-top: 40px;
 }
 
 .section-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: 36px;
     color: var(--primary-black);
     margin-bottom: 20px;
@@ -778,7 +777,7 @@ nav.scrolled {
 }
 
 .card-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: 28px;
     color: var(--primary-black);
     margin-bottom: 10px;
@@ -853,6 +852,7 @@ nav.scrolled {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    gap: 4px;
     transition: all 0.3s ease;
     font-size: 12px;
 }
@@ -865,7 +865,27 @@ nav.scrolled {
     flex-shrink: 0;
     width: 14px;
     height: 14px;
-    margin-right: 4px;
+}
+
+/* Fix alignment for cards with multiple locations on smaller screens */
+@media (max-width: 1400px) {
+    .card-details {
+        gap: 10px 15px;
+    }
+
+    .detail-value {
+        font-size: 12px;
+    }
+
+    .address-link {
+        font-size: 11px;
+        gap: 2px;
+    }
+
+    .address-link svg {
+        width: 12px;
+        height: 12px;
+    }
 }
 
 .card-links {
@@ -904,7 +924,7 @@ nav.scrolled {
 
 /* About Section */
 .about-section {
-    padding: 120px 50px;
+    padding: 60px 50px 120px;
     background: var(--soft-white);
 }
 
@@ -918,7 +938,7 @@ nav.scrolled {
 }
 
 .about-content h2 {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: 48px;
     color: var(--primary-black);
     margin-bottom: 30px;
@@ -955,7 +975,7 @@ nav.scrolled {
 
 /* Animated Counter Styling */
 .stat-item.stat-counter .stat-number {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 56px;
     color: var(--luxury-gold);
     margin-bottom: 10px;
@@ -988,66 +1008,6 @@ nav.scrolled {
     border: 2px solid var(--luxury-gold);
     border-radius: 10px;
     z-index: -1;
-}
-
-/* Core Values Section */
-.core-values-section {
-    padding: 80px 50px;
-    background: var(--light-gray);
-    text-align: center;
-}
-
-.core-values-container {
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.core-values-title {
-    font-family: 'Playfair Display', serif;
-    font-size: 32px;
-    color: var(--primary-black);
-    margin-bottom: 50px;
-}
-
-.core-values-list {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 20px;
-}
-
-.core-value-item {
-    color: var(--luxury-gold);
-    font-size: 18px;
-    font-weight: 600;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    padding: 0 20px;
-    position: relative;
-}
-
-.core-value-item:not(:last-child)::after {
-    content: '—';
-    position: absolute;
-    right: -15px;
-    color: var(--luxury-gold-light);
-}
-
-@media (max-width: 768px) {
-    .core-values-list {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .core-value-item {
-        font-size: 16px;
-        padding: 10px 0;
-    }
-
-    .core-value-item:not(:last-child)::after {
-        display: none;
-    }
 }
 
 /* Timeline Section */
@@ -1130,16 +1090,16 @@ nav.scrolled {
 }
 
 .timeline-year {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Bebas Neue', sans-serif;
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 400;
     color: var(--luxury-gold);
     letter-spacing: 1px;
     margin-bottom: 5px;
 }
 
 .timeline-name {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: 20px;
     color: var(--primary-black);
     margin-bottom: 5px;
@@ -1214,7 +1174,7 @@ nav.scrolled {
 }
 
 .contact-title {
-    font-family: 'Playfair Display', serif;
+    font-family: 'Mongolian Baiti', serif;
     font-size: 48px;
     margin-bottom: 20px;
 }
@@ -1675,11 +1635,6 @@ select:focus {
     .stats-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 30px;
-    }
-
-    .core-values {
-        font-size: 14px;
-        padding: 15px 0;
     }
 
     .contact-content {
