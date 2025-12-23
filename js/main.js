@@ -449,6 +449,7 @@ function initMap() {
                     type: 'standalone',
                     description: 'Premium Seafood & Lobster Rolls',
                     instagram: 'https://www.instagram.com/lobsterlabsd/',
+                    website: 'https://lobsterlabsd.com/',
                     logo: 'assets/logos/lobsterlab.png'
                 },
                 {
@@ -456,6 +457,7 @@ function initMap() {
                     type: 'standalone',
                     description: 'Premium Burgers',
                     instagram: 'https://www.instagram.com/burger.cosmos/',
+                    website: 'https://cosmosburger.com/',
                     logo: 'assets/logos/cosmos.png'
                 },
                 {
@@ -463,6 +465,7 @@ function initMap() {
                     type: 'standalone',
                     description: 'Healthy Eats & Smoothies',
                     instagram: 'https://www.instagram.com/lavida.sandiego/',
+                    website: 'https://lavidasandiego.com/',
                     logo: 'assets/logos/lavida.png'
                 }
             ]
@@ -478,6 +481,7 @@ function initMap() {
                     type: 'standalone',
                     description: 'Craft Cocktails & Tapas',
                     instagram: 'https://www.instagram.com/goodenoughcocktailclub/',
+                    website: 'https://goodenoughsd.com/',
                     logo: 'assets/logos/goodenough.png',
                     address: '555 W Date St, Suite B, San Diego, CA'
                 },
@@ -575,63 +579,61 @@ function initMap() {
 
         const marker = L.marker(group.coords, { icon: customIcon }).addTo(map);
 
-        // Build popup content for the group
-        let popupContent = `<div style="font-family: 'Montserrat', sans-serif; min-width: 280px;">`;
+        // Build compact popup content for the group
+        let popupContent = `<div style="font-family: 'Montserrat', sans-serif; min-width: 220px;">`;
 
         if (locationCount > 1) {
-            popupContent += `<h3 style="margin: 0 0 12px 0; font-family: 'Playfair Display', serif; color: #c9a961; font-size: 18px; border-bottom: 2px solid #c9a961; padding-bottom: 8px;">${group.groupName}</h3>`;
+            popupContent += `<div style="margin: 0 0 8px 0; font-family: 'Playfair Display', serif; color: #c9a961; font-size: 14px; border-bottom: 1px solid #c9a961; padding-bottom: 6px;">${group.groupName}</div>`;
         }
 
         group.locations.forEach((location, index) => {
             const isFoodHall = location.type === 'foodhall';
-            const statusBadge = location.status ? `<span style="display: inline-block; background: #f0ad4e; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; margin-left: 6px;">${location.status}</span>` : '';
+            const statusBadge = location.status ? `<span style="background: #f0ad4e; color: white; padding: 1px 5px; border-radius: 3px; font-size: 9px; margin-left: 4px;">${location.status}</span>` : '';
             const locationAddress = location.address || group.address;
 
             if (index > 0) {
-                popupContent += `<div style="border-top: 1px solid rgba(201, 169, 97, 0.3); margin: 12px 0;"></div>`;
+                popupContent += `<div style="border-top: 1px solid rgba(201, 169, 97, 0.2); margin: 6px 0;"></div>`;
             }
 
             popupContent += `
-                <div style="margin-bottom: 8px;">
-                    <h4 style="margin: 0 0 4px 0; font-family: 'Playfair Display', serif; color: #333; font-size: 16px;">
-                        ${location.title}${statusBadge}
-                    </h4>
-                    <p style="margin: 0 0 6px 0; font-size: 11px; color: #888; font-style: italic;">${location.description}</p>
-                    <p style="margin: 0 0 8px 0; font-size: 11px; color: #666; border-left: 2px solid #c9a961; padding-left: 6px;">${locationAddress}</p>
-                    ${isFoodHall && location.concepts && location.concepts.length > 0 ? `
-                        <div style="margin: 8px 0;">
-                            <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: 600; color: #333;">Concepts:</p>
-                            <p style="margin: 0; font-size: 10px; color: #666;">${location.concepts.join(' • ')}</p>
+                <div style="margin-bottom: 4px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px;">
+                        <span style="font-family: 'Playfair Display', serif; color: #333; font-size: 13px; font-weight: 600;">${location.title}${statusBadge}</span>
+                        <div style="display: flex; gap: 6px; align-items: center;">
+                            ${location.website ? `
+                                <a href="${location.website}" target="_blank" style="color: #c9a961; text-decoration: none; display: flex;" title="Website">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
+                                    </svg>
+                                </a>
+                            ` : ''}
+                            ${location.instagram ? `
+                                <a href="${location.instagram}" target="_blank" style="color: #c9a961; text-decoration: none; display: flex;" title="Instagram">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
+                                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
+                                    </svg>
+                                </a>
+                            ` : ''}
                         </div>
-                    ` : ''}
-                    <div style="display: flex; gap: 8px; margin-top: 8px;">
-                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}"
-                           target="_blank"
-                           style="color: #c9a961; text-decoration: none; padding: 4px; border-radius: 50%; transition: all 0.3s ease;"
-                           onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff';"
-                           onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961';">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                               <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-                           </svg>
-                        </a>
-                        ${location.instagram ? `
-                            <a href="${location.instagram}" target="_blank"
-                               style="color: #c9a961; text-decoration: none; padding: 4px; border-radius: 50%; transition: all 0.3s ease;"
-                               onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff';"
-                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961';">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
-                                   <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
-                               </svg>
-                            </a>
-                        ` : ''}
                     </div>
+                    <div style="display: flex; align-items: center; gap: 4px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}" target="_blank" style="color: #c9a961; text-decoration: none; display: flex;" title="Get Directions">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                            </svg>
+                        </a>
+                        <span style="font-size: 10px; color: #666;">${locationAddress}</span>
+                    </div>
+                    ${isFoodHall && location.concepts && location.concepts.length > 0 ? `
+                        <div style="margin-top: 3px; font-size: 9px; color: #888;">${location.concepts.join(' • ')}</div>
+                    ` : ''}
                 </div>
             `;
         });
 
         popupContent += `</div>`;
 
-        marker.bindPopup(popupContent, { maxWidth: 320 });
+        marker.bindPopup(popupContent, { maxWidth: 280 });
 
         // Open popup on hover
         marker.on('mouseover', function() {
