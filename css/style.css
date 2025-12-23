@@ -1062,11 +1062,17 @@ nav.scrolled {
 
 .timeline-content {
     background: var(--light-gray);
-    padding: 20px 30px;
+    padding: 25px 30px;
     border-radius: 8px;
-    max-width: 350px;
+    width: 280px;
+    min-height: 160px;
     position: relative;
     margin-right: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .timeline-item:nth-child(even) .timeline-content {
@@ -1091,11 +1097,11 @@ nav.scrolled {
 
 .timeline-year {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 14px;
+    font-size: 22px;
     font-weight: 400;
     color: var(--luxury-gold);
-    letter-spacing: 1px;
-    margin-bottom: 5px;
+    letter-spacing: 2px;
+    margin-bottom: 10px;
 }
 
 .timeline-name {
@@ -1117,6 +1123,89 @@ nav.scrolled {
     text-transform: uppercase;
     border-radius: 3px;
     margin-top: 5px;
+}
+
+/* Timeline Logos */
+.timeline-logo {
+    height: 80px;
+    width: auto;
+    max-width: 220px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 10px;
+    filter: brightness(0) saturate(100%);
+    transition: filter 0.3s ease, transform 0.3s ease;
+}
+
+.timeline-item:hover .timeline-logo {
+    filter: brightness(0) saturate(100%) invert(67%) sepia(57%) saturate(356%) hue-rotate(6deg) brightness(91%) contrast(86%);
+    transform: scale(1.05);
+}
+
+/* Mystery placeholder wrapper - stacked layout */
+.timeline-logo-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+/* Mystery placeholder for unrevealed concepts */
+.timeline-mystery {
+    height: 65px;
+    width: 65px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: linear-gradient(135deg, rgba(184, 157, 102, 0.1) 0%, rgba(184, 157, 102, 0.05) 100%);
+    border: 2px dashed var(--luxury-gold);
+    border-radius: 50%;
+    animation: mysteryPulse 3s ease-in-out infinite;
+}
+
+.timeline-mystery .mystery-text {
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 700;
+    color: var(--luxury-gold);
+    opacity: 0.8;
+    animation: mysteryFloat 2s ease-in-out infinite;
+}
+
+.mystery-name {
+    font-family: 'Mongolian Baiti', serif;
+    font-size: 22px;
+    color: var(--primary-black);
+    font-weight: 700;
+}
+
+@keyframes mysteryPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(184, 157, 102, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 20px 5px rgba(184, 157, 102, 0.15);
+    }
+}
+
+@keyframes mysteryFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+}
+
+.timeline-item:hover .timeline-mystery {
+    background: linear-gradient(135deg, rgba(184, 157, 102, 0.2) 0%, rgba(184, 157, 102, 0.1) 100%);
+    border-style: solid;
+}
+
+.timeline-item:hover .timeline-mystery .mystery-text {
+    opacity: 1;
 }
 
 /* Mobile responsive */
@@ -1145,11 +1234,38 @@ nav.scrolled {
     .timeline-content {
         margin-right: 0;
         margin-left: 0;
-        max-width: 100%;
+        width: 100%;
+        min-height: 120px;
     }
 
     .timeline-item:nth-child(even) .timeline-content {
         margin-left: 0;
+    }
+
+    .timeline-year {
+        font-size: 18px;
+    }
+
+    .timeline-logo {
+        height: 60px;
+        max-width: 180px;
+    }
+
+    .timeline-logo-wrapper {
+        gap: 8px;
+    }
+
+    .timeline-mystery {
+        height: 50px;
+        width: 50px;
+    }
+
+    .timeline-mystery .mystery-text {
+        font-size: 26px;
+    }
+
+    .mystery-name {
+        font-size: 18px;
     }
 }
 
