@@ -685,9 +685,9 @@ nav.scrolled {
 }
 
 .concept-card:nth-child(2) .card-image {
-    background-image: url('../assets/cards/bbq chicken.jpg');
-    background-size: 100%;
-    background-position: center 65%;
+    background-image: url('../assets/cards/cosmos 1-33.jpg');
+    background-size: cover;
+    background-position: center 69%;
     background-repeat: no-repeat;
 }
 
@@ -1142,6 +1142,28 @@ nav.scrolled {
     transform: scale(1.05);
 }
 
+/* Individual logo size adjustments */
+.timeline-logo.logo-lavida {
+    height: 140px; /* +75% from 80px */
+}
+
+.timeline-logo.logo-goodenough {
+    height: 128px; /* +60% from 80px */
+}
+
+.timeline-logo.logo-cosmos,
+.timeline-logo.logo-lobsterlab {
+    height: 92px; /* +15% from 80px */
+}
+
+.timeline-logo.logo-station8 {
+    height: 101px; /* +25% from 80px */
+}
+
+.timeline-logo.logo-miramar {
+    height: 68px; /* -15% from 80px */
+}
+
 /* Mystery placeholder wrapper - stacked layout */
 .timeline-logo-wrapper {
     display: flex;
@@ -1163,6 +1185,7 @@ nav.scrolled {
     border: 2px dashed var(--luxury-gold);
     border-radius: 50%;
     animation: mysteryPulse 3s ease-in-out infinite;
+    transition: background 0.3s ease, border-style 0.3s ease;
 }
 
 .timeline-mystery .mystery-text {
