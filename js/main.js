@@ -438,23 +438,43 @@ function initMap() {
 
     // Food Halls and Standalone Locations
     const locations = [
+        // Carlsbad Location - Multiple Concepts
+        {
+            coords: [33.1280, -117.2654],
+            title: 'Lobster Lab',
+            type: 'standalone',
+            address: '890 Palomar Airport Rd, Carlsbad, CA',
+            description: 'Premium Seafood & Lobster Rolls',
+            instagram: 'https://www.instagram.com/lobsterlabsd/',
+            logo: 'assets/logos/lobsterlab.png'
+        },
+        {
+            coords: [33.1282, -117.2650],
+            title: 'Cosmos Burger',
+            type: 'standalone',
+            address: '890 Palomar Airport Rd, Carlsbad, CA',
+            description: 'Premium Burgers',
+            instagram: 'https://www.instagram.com/burger.cosmos/',
+            logo: 'assets/logos/cosmos.png'
+        },
+        {
+            coords: [33.1278, -117.2658],
+            title: 'La Vida',
+            type: 'standalone',
+            address: '890 Palomar Airport Rd, Carlsbad, CA',
+            description: 'Healthy Eats & Smoothies',
+            instagram: 'https://www.instagram.com/lavida.sandiego/',
+            logo: 'assets/logos/lavida.png'
+        },
+        // San Diego - Little Italy
         {
             coords: [32.7197, -117.1697],
             title: 'Good Enough',
             type: 'standalone',
             address: '555 W Date St, Suite B, San Diego, CA',
             description: 'Craft Cocktails & Tapas',
-            instagram: 'https://www.instagram.com/goodenough.sd/',
+            instagram: 'https://www.instagram.com/goodenoughcocktailclub/',
             logo: 'assets/logos/goodenough.png'
-        },
-        {
-            coords: [33.4267, -117.6112],
-            title: 'Egg n Out (Breakfast Club)',
-            type: 'standalone',
-            address: '1720 North El Camino Real, San Clemente, CA',
-            description: 'Breakfast Concept',
-            status: 'Coming Soon',
-            logo: 'assets/logo.png'
         },
         {
             coords: [32.7200, -117.1700],
@@ -465,6 +485,7 @@ function initMap() {
             concepts: [],
             logo: 'assets/logo.png'
         },
+        // La Jolla - UC San Diego
         {
             coords: [32.8715, -117.2460],
             title: 'Station 8 Public Market',
@@ -475,6 +496,7 @@ function initMap() {
             instagram: 'https://www.instagram.com/station8publicmarket/',
             logo: 'assets/logos/station8.png'
         },
+        // San Clemente
         {
             coords: [33.4267, -117.6112],
             title: 'Miramar Food Hall',
@@ -489,15 +511,26 @@ function initMap() {
 
     // Add markers for each location
     locations.forEach(location => {
-        // Create icon with actual logo
+        // Create icon with actual logo or mystery placeholder
         const size = 45;
         const isFoodHall = location.type === 'foodhall';
+        const hasLogo = location.logo && !location.logo.includes('assets/logo.png');
+
+        let iconHtml;
+        if (hasLogo) {
+            iconHtml = `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 3px solid #c9a961; background: white; box-shadow: 0 3px 12px rgba(0,0,0,0.4); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 5px;">
+                <img src="${location.logo}" style="width: 100%; height: 100%; object-fit: contain;" alt="${location.title}">
+            </div>`;
+        } else {
+            // Mystery placeholder for locations without logos
+            iconHtml = `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 3px dashed #c9a961; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); box-shadow: 0 3px 12px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;">
+                <span style="font-size: 24px; font-weight: bold; color: #c9a961; font-family: 'Playfair Display', serif;">?</span>
+            </div>`;
+        }
 
         const customIcon = L.divIcon({
             className: 'custom-marker-logo',
-            html: `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 3px solid #c9a961; background: white; box-shadow: 0 3px 12px rgba(0,0,0,0.4); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 5px;">
-                <img src="${location.logo}" style="width: 100%; height: 100%; object-fit: contain;" alt="${location.title}">
-            </div>`,
+            html: iconHtml,
             iconSize: [size, size],
             iconAnchor: [size/2, size/2],
             popupAnchor: [0, -size/2 - 8]
