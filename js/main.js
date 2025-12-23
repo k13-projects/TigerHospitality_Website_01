@@ -436,187 +436,190 @@ function initMap() {
         maxZoom: 20
     }).addTo(map);
 
-    // Food Halls and Standalone Locations
-    const locations = [
-        // Carlsbad Location - Multiple Concepts
+    // Location Groups - locations at the same address are grouped together
+    const locationGroups = [
         {
+            // Carlsbad - Multiple Concepts at same address
             coords: [33.1280, -117.2654],
-            title: 'Lobster Lab',
-            type: 'standalone',
+            groupName: 'Carlsbad',
             address: '890 Palomar Airport Rd, Carlsbad, CA',
-            description: 'Premium Seafood & Lobster Rolls',
-            instagram: 'https://www.instagram.com/lobsterlabsd/',
-            logo: 'assets/logos/lobsterlab.png'
+            locations: [
+                {
+                    title: 'Lobster Lab',
+                    type: 'standalone',
+                    description: 'Premium Seafood & Lobster Rolls',
+                    instagram: 'https://www.instagram.com/lobsterlabsd/',
+                    logo: 'assets/logos/lobsterlab.png'
+                },
+                {
+                    title: 'Cosmos Burger',
+                    type: 'standalone',
+                    description: 'Premium Burgers',
+                    instagram: 'https://www.instagram.com/burger.cosmos/',
+                    logo: 'assets/logos/cosmos.png'
+                },
+                {
+                    title: 'La Vida',
+                    type: 'standalone',
+                    description: 'Healthy Eats & Smoothies',
+                    instagram: 'https://www.instagram.com/lavida.sandiego/',
+                    logo: 'assets/logos/lavida.png'
+                }
+            ]
         },
         {
-            coords: [33.1282, -117.2650],
-            title: 'Cosmos Burger',
-            type: 'standalone',
-            address: '890 Palomar Airport Rd, Carlsbad, CA',
-            description: 'Premium Burgers',
-            instagram: 'https://www.instagram.com/burger.cosmos/',
-            logo: 'assets/logos/cosmos.png'
-        },
-        {
-            coords: [33.1278, -117.2658],
-            title: 'La Vida',
-            type: 'standalone',
-            address: '890 Palomar Airport Rd, Carlsbad, CA',
-            description: 'Healthy Eats & Smoothies',
-            instagram: 'https://www.instagram.com/lavida.sandiego/',
-            logo: 'assets/logos/lavida.png'
-        },
-        // San Diego - Little Italy
-        {
+            // San Diego - Little Italy (two nearby locations)
             coords: [32.7197, -117.1697],
-            title: 'Good Enough',
-            type: 'standalone',
-            address: '555 W Date St, Suite B, San Diego, CA',
-            description: 'Craft Cocktails & Tapas',
-            instagram: 'https://www.instagram.com/goodenoughcocktailclub/',
-            logo: 'assets/logos/goodenough.png'
+            groupName: 'Little Italy',
+            address: '555 W Date St, San Diego, CA',
+            locations: [
+                {
+                    title: 'Good Enough',
+                    type: 'standalone',
+                    description: 'Craft Cocktails & Tapas',
+                    instagram: 'https://www.instagram.com/goodenoughcocktailclub/',
+                    logo: 'assets/logos/goodenough.png',
+                    address: '555 W Date St, Suite B, San Diego, CA'
+                },
+                {
+                    title: 'Global Fork',
+                    type: 'foodhall',
+                    description: 'Coming Soon',
+                    status: 'Coming Soon',
+                    concepts: [],
+                    logo: 'assets/logo.png',
+                    address: '550 W. Date Street Suite A, San Diego, CA 92101'
+                }
+            ]
         },
         {
-            coords: [32.7200, -117.1700],
-            title: 'Global Fork',
-            type: 'foodhall',
-            address: '550 W. Date Street Suite A, San Diego, CA 92101',
-            status: 'Coming Soon',
-            concepts: [],
-            logo: 'assets/logo.png'
-        },
-        // La Jolla - UC San Diego
-        {
+            // La Jolla - UC San Diego (single location)
             coords: [32.8715, -117.2460],
-            title: 'Station 8 Public Market',
-            type: 'foodhall',
+            groupName: 'La Jolla',
             address: '9145 Scholars Drive South, La Jolla, CA 92037',
-            concepts: [],
-            status: 'Coming Soon',
-            instagram: 'https://www.instagram.com/station8publicmarket/',
-            logo: 'assets/logos/station8.png'
+            locations: [
+                {
+                    title: 'Station 8 Public Market',
+                    type: 'foodhall',
+                    description: 'Food Hall',
+                    concepts: [],
+                    status: 'Coming Soon',
+                    instagram: 'https://www.instagram.com/station8publicmarket/',
+                    logo: 'assets/logos/station8.png'
+                }
+            ]
         },
-        // San Clemente
         {
+            // San Clemente (single location)
             coords: [33.4267, -117.6112],
-            title: 'Miramar Food Hall',
-            type: 'foodhall',
+            groupName: 'San Clemente',
             address: '1720 North El Camino Real, San Clemente, CA',
-            concepts: ['Lobster Lab', 'Cosmos Burger', 'La Vida', 'Egg n Out'],
-            status: 'Coming Soon',
-            instagram: 'https://www.instagram.com/miramarfoodhall/',
-            logo: 'assets/logos/miramar.png'
+            locations: [
+                {
+                    title: 'Miramar Food Hall',
+                    type: 'foodhall',
+                    description: 'Food Hall',
+                    concepts: ['Lobster Lab', 'Cosmos Burger', 'La Vida', 'Egg n Out'],
+                    status: 'Coming Soon',
+                    instagram: 'https://www.instagram.com/miramarfoodhall/',
+                    logo: 'assets/logos/miramar.png'
+                }
+            ]
         }
     ];
 
-    // Add markers for each location
-    locations.forEach(location => {
-        // Create icon with actual logo or mystery placeholder
-        const size = 45;
-        const isFoodHall = location.type === 'foodhall';
-        const hasLogo = location.logo && !location.logo.includes('assets/logo.png');
-
-        let iconHtml;
+    // Helper function to create single logo icon
+    function createLogoIcon(logo, title, size) {
+        const hasLogo = logo && !logo.includes('assets/logo.png');
         if (hasLogo) {
-            iconHtml = `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 3px solid #c9a961; background: white; box-shadow: 0 3px 12px rgba(0,0,0,0.4); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 5px;">
-                <img src="${location.logo}" style="width: 100%; height: 100%; object-fit: contain;" alt="${location.title}">
+            return `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 3px solid #c9a961; background: white; box-shadow: 0 3px 12px rgba(0,0,0,0.4); overflow: hidden; display: flex; align-items: center; justify-content: center; padding: 4px; flex-shrink: 0;">
+                <img src="${logo}" style="width: 100%; height: 100%; object-fit: contain;" alt="${title}">
             </div>`;
         } else {
-            // Mystery placeholder for locations without logos
-            iconHtml = `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 3px dashed #c9a961; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); box-shadow: 0 3px 12px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center;">
-                <span style="font-size: 24px; font-weight: bold; color: #c9a961; font-family: 'Playfair Display', serif;">?</span>
+            return `<div style="width: ${size}px; height: ${size}px; border-radius: 50%; border: 3px dashed #c9a961; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); box-shadow: 0 3px 12px rgba(0,0,0,0.4); display: flex; align-items: center; justify-content: center; flex-shrink: 0;">
+                <span style="font-size: ${size * 0.5}px; font-weight: bold; color: #c9a961; font-family: 'Playfair Display', serif;">?</span>
+            </div>`;
+        }
+    }
+
+    // Add markers for each location group
+    locationGroups.forEach(group => {
+        const locationCount = group.locations.length;
+        const size = 40;
+        const gap = 4;
+
+        let iconHtml;
+        let iconWidth;
+
+        if (locationCount === 1) {
+            // Single location - simple circular icon
+            const loc = group.locations[0];
+            iconHtml = createLogoIcon(loc.logo, loc.title, size);
+            iconWidth = size;
+        } else {
+            // Multiple locations - display side by side in a frame
+            const logosHtml = group.locations.map(loc => createLogoIcon(loc.logo, loc.title, size)).join('');
+            iconWidth = (size * locationCount) + (gap * (locationCount - 1)) + 16;
+            iconHtml = `<div style="display: flex; align-items: center; gap: ${gap}px; background: rgba(255,255,255,0.95); padding: 8px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 2px solid #c9a961;">
+                ${logosHtml}
             </div>`;
         }
 
         const customIcon = L.divIcon({
             className: 'custom-marker-logo',
             html: iconHtml,
-            iconSize: [size, size],
-            iconAnchor: [size/2, size/2],
-            popupAnchor: [0, -size/2 - 8]
+            iconSize: [iconWidth, size + (locationCount > 1 ? 16 : 0)],
+            iconAnchor: [iconWidth/2, (size + (locationCount > 1 ? 16 : 0))/2],
+            popupAnchor: [0, -(size/2) - 12]
         });
 
-        const marker = L.marker(location.coords, { icon: customIcon }).addTo(map);
+        const marker = L.marker(group.coords, { icon: customIcon }).addTo(map);
 
-        // Create popup content based on location type
-        let popupContent = '';
+        // Build popup content for the group
+        let popupContent = `<div style="font-family: 'Montserrat', sans-serif; min-width: 280px;">`;
 
-        if (isFoodHall) {
-            const conceptsList = location.concepts && location.concepts.length > 0 ? location.concepts.map(c => `<li style="margin: 3px 0;">${c}</li>`).join('') : '';
-            const statusBadge = location.status ? `<span style="display: inline-block; background: #f0ad4e; color: white; padding: 3px 8px; border-radius: 3px; font-size: 11px; margin-left: 8px;">${location.status}</span>` : '';
+        if (locationCount > 1) {
+            popupContent += `<h3 style="margin: 0 0 12px 0; font-family: 'Playfair Display', serif; color: #c9a961; font-size: 18px; border-bottom: 2px solid #c9a961; padding-bottom: 8px;">${group.groupName}</h3>`;
+        }
 
-            popupContent = `
-                <div style="font-family: 'Montserrat', sans-serif; min-width: 250px;">
-                    <h3 style="margin: 0 0 8px 0; font-family: 'Playfair Display', serif; color: #c9a961; font-size: 20px;">
+        group.locations.forEach((location, index) => {
+            const isFoodHall = location.type === 'foodhall';
+            const statusBadge = location.status ? `<span style="display: inline-block; background: #f0ad4e; color: white; padding: 2px 6px; border-radius: 3px; font-size: 10px; margin-left: 6px;">${location.status}</span>` : '';
+            const locationAddress = location.address || group.address;
+
+            if (index > 0) {
+                popupContent += `<div style="border-top: 1px solid rgba(201, 169, 97, 0.3); margin: 12px 0;"></div>`;
+            }
+
+            popupContent += `
+                <div style="margin-bottom: 8px;">
+                    <h4 style="margin: 0 0 4px 0; font-family: 'Playfair Display', serif; color: #333; font-size: 16px;">
                         ${location.title}${statusBadge}
-                    </h3>
-                    <p style="margin: 0 0 10px 0; font-size: 12px; color: #666; border-left: 3px solid #c9a961; padding-left: 8px;">${location.address}</p>
-                    ${conceptsList ? `
-                        <div style="margin: 12px 0;">
-                            <p style="margin: 0 0 6px 0; font-size: 13px; font-weight: 600; color: #333;">Concepts Inside:</p>
-                            <ul style="margin: 0; padding-left: 20px; font-size: 12px; color: #666;">
-                                ${conceptsList}
-                            </ul>
+                    </h4>
+                    <p style="margin: 0 0 6px 0; font-size: 11px; color: #888; font-style: italic;">${location.description}</p>
+                    <p style="margin: 0 0 8px 0; font-size: 11px; color: #666; border-left: 2px solid #c9a961; padding-left: 6px;">${locationAddress}</p>
+                    ${isFoodHall && location.concepts && location.concepts.length > 0 ? `
+                        <div style="margin: 8px 0;">
+                            <p style="margin: 0 0 4px 0; font-size: 11px; font-weight: 600; color: #333;">Concepts:</p>
+                            <p style="margin: 0; font-size: 10px; color: #666;">${location.concepts.join(' • ')}</p>
                         </div>
                     ` : ''}
-                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(201, 169, 97, 0.3);">
-                        ${!location.status || location.status.includes('August 2026') ? `
-                            <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address)}"
-                               target="_blank"
-                               style="color: #c9a961; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 8px; border-radius: 50%; background: transparent;"
-                               onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff'; this.style.transform='translateY(-2px)';"
-                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961'; this.style.transform='translateY(0)';">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-                                   <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-                               </svg>
-                            </a>
-                        ` : ''}
-                        ${location.website ? `
-                            <a href="${location.website}" target="_blank"
-                               style="color: #c9a961; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 8px; border-radius: 50%; background: transparent;"
-                               onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff'; this.style.transform='scale(1.1)';"
-                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961'; this.style.transform='scale(1)';">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-                                   <path d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-                               </svg>
-                            </a>
-                        ` : ''}
-                        ${location.instagram ? `
-                            <a href="${location.instagram}" target="_blank"
-                               style="color: #c9a961; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 8px; border-radius: 50%; background: transparent;"
-                               onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff'; this.style.transform='scale(1.1)';"
-                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961'; this.style.transform='scale(1)';">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
-                                   <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
-                               </svg>
-                            </a>
-                        ` : ''}
-                    </div>
-                </div>
-            `;
-        } else {
-            // Standalone concept
-            popupContent = `
-                <div style="font-family: 'Montserrat', sans-serif; min-width: 220px;">
-                    <h3 style="margin: 0 0 8px 0; font-family: 'Playfair Display', serif; color: #c9a961; font-size: 18px;">${location.title}</h3>
-                    ${location.description ? `<p style="margin: 0 0 8px 0; font-size: 12px; color: #888; font-style: italic;">${location.description}</p>` : ''}
-                    <p style="margin: 0 0 10px 0; font-size: 12px; color: #666; border-left: 3px solid #c9a961; padding-left: 8px;">${location.address}</p>
-                    <div style="display: flex; gap: 10px; justify-content: center; margin-top: 15px; padding-top: 15px; border-top: 1px solid rgba(201, 169, 97, 0.3);">
-                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(location.address)}"
+                    <div style="display: flex; gap: 8px; margin-top: 8px;">
+                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}"
                            target="_blank"
-                           style="color: #c9a961; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 8px; border-radius: 50%; background: transparent;"
-                           onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff'; this.style.transform='translateY(-2px)';"
-                           onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961'; this.style.transform='translateY(0)';">
-                           <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                           style="color: #c9a961; text-decoration: none; padding: 4px; border-radius: 50%; transition: all 0.3s ease;"
+                           onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff';"
+                           onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961';">
+                           <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
                            </svg>
                         </a>
                         ${location.instagram ? `
                             <a href="${location.instagram}" target="_blank"
-                               style="color: #c9a961; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center; text-decoration: none; padding: 8px; border-radius: 50%; background: transparent;"
-                               onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff'; this.style.transform='scale(1.1)';"
-                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961'; this.style.transform='scale(1)';">
-                               <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" fill="currentColor" viewBox="0 0 24 24">
+                               style="color: #c9a961; text-decoration: none; padding: 4px; border-radius: 50%; transition: all 0.3s ease;"
+                               onmouseover="this.style.backgroundColor='#c9a961'; this.style.color='#ffffff';"
+                               onmouseout="this.style.backgroundColor='transparent'; this.style.color='#c9a961';">
+                               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 24 24">
                                    <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
                                </svg>
                             </a>
@@ -624,18 +627,20 @@ function initMap() {
                     </div>
                 </div>
             `;
-        }
+        });
 
-        marker.bindPopup(popupContent, { maxWidth: 300 });
+        popupContent += `</div>`;
 
-        // Open popup on hover for better UX
+        marker.bindPopup(popupContent, { maxWidth: 320 });
+
+        // Open popup on hover
         marker.on('mouseover', function() {
             this.openPopup();
         });
     });
 
     // Fit map to show all markers
-    const group = L.featureGroup(locations.map(loc => L.marker(loc.coords)));
+    const group = L.featureGroup(locationGroups.map(g => L.marker(g.coords)));
     map.fitBounds(group.getBounds().pad(0.1));
 }
 
