@@ -1285,6 +1285,18 @@ nav.scrolled {
     margin-left: 40px;
 }
 
+/* Clickable timeline entries (link out to each concept's site) */
+a.timeline-content {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+a.timeline-content:focus-visible {
+    outline: 2px solid var(--luxury-gold);
+    outline-offset: 4px;
+}
+
 /* Dot on the timeline */
 .timeline-item::after {
     content: '';

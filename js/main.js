@@ -539,10 +539,10 @@ function initMap() {
                 {
                     title: 'Global Fork',
                     type: 'foodhall',
-                    description: 'Coming Soon',
-                    status: 'Coming Soon',
+                    description: 'Food Hall',
                     concepts: [],
-                    logo: 'assets/logo.png',
+                    website: 'https://globalforkfh.com/',
+                    logo: 'assets/logos/GLOBAL FORK BADGE SDCA black.png',
                     address: '550 W. Date Street Suite A, San Diego, CA 92101'
                 }
             ]
