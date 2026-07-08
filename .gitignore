@@ -26,3 +26,4 @@ node_modules/
 # Build outputs
 dist/
 build/
+.gstack/
