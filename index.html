@@ -328,6 +328,20 @@
                                         </div>
                                     </div>
                                     <div class="detail-item">
+                                        <div class="detail-label">Sky Deck</div>
+                                        <div class="detail-value">
+                                            <a href="https://www.google.com/maps/search/?api=1&query=12841+El+Camino+Real+Ste+206+San+Diego+CA+92130"
+                                                target="_blank" rel="noopener noreferrer" class="address-link">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+                                                    fill="currentColor" viewBox="0 0 24 24">
+                                                    <path
+                                                        d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
+                                                </svg>
+                                                12841 El Camino Real #206
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <div class="detail-item">
                                         <div class="detail-label">La Jolla</div>
                                         <div class="detail-value">
                                             <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
@@ -1002,6 +1016,61 @@
         <!-- Map Section -->
         <section class="map-section" aria-label="Restaurant locations">
             <div class="map-container">
+                <div class="map-filter" id="mapFilter" aria-label="Filter map locations">
+                    <button type="button" class="map-filter-toggle" aria-expanded="false" aria-controls="mapFilterBody">
+                        <span class="map-filter-title">Filter Locations</span>
+                        <span class="map-filter-caret" aria-hidden="true">▾</span>
+                    </button>
+                    <div class="map-filter-body" id="mapFilterBody">
+                        <fieldset class="map-filter-group">
+                            <legend>Concepts</legend>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fc-lobsterlab" data-concept="lobsterlab" checked aria-label="Toggle Lobster Lab on map">
+                                <span class="filter-logo"><img src="assets/logos/lobsterlab.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-concept="lobsterlab" aria-label="Show only Lobster Lab">Lobster Lab</button>
+                            </div>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fc-cosmos" data-concept="cosmos" checked aria-label="Toggle Cosmos Burger on map">
+                                <span class="filter-logo"><img src="assets/logos/cosmos.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-concept="cosmos" aria-label="Show only Cosmos Burger">Cosmos Burger</button>
+                            </div>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fc-lavida" data-concept="lavida" checked aria-label="Toggle La Vida on map">
+                                <span class="filter-logo"><img src="assets/logos/lavida.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-concept="lavida" aria-label="Show only La Vida">La Vida</button>
+                            </div>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fc-eggout" data-concept="eggout" checked aria-label="Toggle Egg and Out on map">
+                                <span class="filter-logo"><img src="assets/logos/EGG%20%26%20OUT%20BLACK%20.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-concept="eggout" aria-label="Show only Egg and Out">Egg &amp; Out</button>
+                            </div>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fc-goodenough" data-concept="goodenough" checked aria-label="Toggle Good Enough on map">
+                                <span class="filter-logo"><img src="assets/logos/goodenough.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-concept="goodenough" aria-label="Show only Good Enough">Good Enough</button>
+                            </div>
+                        </fieldset>
+                        <fieldset class="map-filter-group">
+                            <legend>Food Halls</legend>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fv-miramar" data-venue="miramar" checked aria-label="Toggle Miramar Food Hall on map">
+                                <span class="filter-logo"><img src="assets/logos/miramar.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-venue="miramar" aria-label="Show only Miramar Food Hall">Miramar</button>
+                            </div>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fv-globalfork" data-venue="globalfork" checked aria-label="Toggle Global Fork on map">
+                                <span class="filter-logo"><img src="assets/logos/GLOBAL%20FORK%20BADGE%20SDCA%20black.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-venue="globalfork" aria-label="Show only Global Fork">Global Fork</button>
+                            </div>
+                            <div class="filter-row">
+                                <input type="checkbox" id="fv-station8" data-venue="station8" checked aria-label="Toggle Station 8 on map">
+                                <span class="filter-logo"><img src="assets/logos/station8.png" alt="" aria-hidden="true"></span>
+                                <button type="button" class="filter-name" data-isolate-venue="station8" aria-label="Show only Station 8">Station 8</button>
+                            </div>
+                        </fieldset>
+                        <button type="button" class="map-filter-showall" data-show-all>Show all</button>
+                    </div>
+                </div>
                 <div id="map"></div>
             </div>
         </section>

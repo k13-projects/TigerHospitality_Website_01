@@ -19,13 +19,22 @@ window.addEventListener('load', function () {
     // Ensure scroll position is at top when loading screen is active
     window.scrollTo(0, 0);
 
-    // Wait for bottom-to-top reveal (1.2s) + brief pause
+    // "THG Rise" intro timing:
+    //   reveal fill 1.2s (CSS revealUp) → 0.5s fade to the homepage. No hold — the
+    //   fade begins the moment the logo finishes filling.
+    //   fadeDuration MUST match the .loading-screen opacity transition (0.5s) so the
+    //   screen is removed exactly when it finishes fading (no lingering / no early cut).
+    //   Reduced-motion users skip the fill and get a near-instant exit.
+    const screen = document.getElementById('loadingScreen');
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const holdDelay = reduceMotion ? 50 : 1200;    // reveal 1.2s, no hold
+    const fadeDuration = reduceMotion ? 200 : 500;  // keep in sync with the CSS transition
     setTimeout(() => {
-        document.getElementById('loadingScreen').classList.add('fade-out');
+        screen.classList.add('fade-out');
         setTimeout(() => {
-            document.getElementById('loadingScreen').style.display = 'none';
-        }, 600);
-    }, 1400); // 1200ms for reveal + 200ms pause
+            screen.style.display = 'none';
+        }, fadeDuration);
+    }, holdDelay);
 });
 
 // ===== Card Flip Click Support (for touch devices) =====
@@ -461,8 +470,11 @@ function initMap() {
         center: sanDiego,
         zoom: 12,
         scrollWheelZoom: true,
-        zoomControl: true
+        zoomControl: false
     });
+
+    // Zoom control top-right so the left side is free for the filter panel
+    L.control.zoom({ position: 'topright' }).addTo(map);
 
     // Add light theme tiles from CartoDB (Positron) for better readability
     L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
@@ -471,116 +483,77 @@ function initMap() {
         maxZoom: 20
     }).addTo(map);
 
-    // Location Groups - locations at the same address are grouped together
-    const locationGroups = [
+    // Brand registry — one entry per culinary concept. Markers render these logos.
+    const BRANDS = {
+        lobsterlab: { name: 'Lobster Lab',   logo: 'assets/logos/lobsterlab.png' },
+        cosmos:     { name: 'Cosmos Burger', logo: 'assets/logos/cosmos.png' },
+        lavida:     { name: 'La Vida',       logo: 'assets/logos/lavida.png' },
+        eggout:     { name: 'Egg & Out',     logo: 'assets/logos/EGG & OUT BLACK .png' },
+        goodenough: { name: 'Good Enough',   logo: 'assets/logos/goodenough.png' }
+    };
+
+    // Venues — one marker each. `brands` lists the concept keys served at that venue,
+    // so each marker shows its member-brand logos side by side.
+    const VENUES = [
         {
-            // Carlsbad - Multiple Concepts at same address
+            id: 'windmill', name: 'The Windmill Food Hall', type: 'foodhall', vendor: true,
             coords: [33.1280, -117.2654],
-            groupName: 'Carlsbad',
             address: '890 Palomar Airport Rd, Carlsbad, CA',
-            locations: [
-                {
-                    title: 'Lobster Lab',
-                    type: 'standalone',
-                    description: 'Premium Seafood & Lobster Rolls',
-                    instagram: 'https://www.instagram.com/lobsterlabsd/',
-                    website: 'https://lobsterlabsd.com/',
-                    logo: 'assets/logos/lobsterlab.png'
-                },
-                {
-                    title: 'Cosmos Burger',
-                    type: 'standalone',
-                    description: 'Premium Burgers',
-                    instagram: 'https://www.instagram.com/burger.cosmos/',
-                    website: 'https://cosmosburger.com/',
-                    logo: 'assets/logos/cosmos.png'
-                },
-                {
-                    title: 'La Vida',
-                    type: 'standalone',
-                    description: 'Healthy Eats & Smoothies',
-                    instagram: 'https://www.instagram.com/lavida.sandiego/',
-                    website: 'https://lavida.fit/',
-                    logo: 'assets/logos/lavida.png'
-                }
-            ]
+            brands: ['lobsterlab', 'cosmos', 'lavida']
         },
         {
-            // Oceanside - Cosmos Burger
+            id: 'oceanside', name: 'Cosmos Burger — Oceanside', type: 'standalone',
             coords: [33.1959, -117.3795],
-            groupName: 'Oceanside',
             address: '208 N Coast Hwy, Oceanside, CA',
-            locations: [
-                {
-                    title: 'Cosmos Burger',
-                    type: 'standalone',
-                    description: 'Premium Burgers',
-                    instagram: 'https://www.instagram.com/burger.cosmos/',
-                    website: 'https://cosmosburger.com/',
-                    logo: 'assets/logos/cosmos.png'
-                }
-            ]
+            instagram: 'https://www.instagram.com/burger.cosmos/',
+            website: 'https://www.burgerscosmos.com/',
+            brands: ['cosmos']
         },
         {
-            // San Diego - Little Italy (two nearby locations)
-            coords: [32.7197, -117.1697],
-            groupName: 'Little Italy',
-            address: '555 W Date St, San Diego, CA',
-            locations: [
-                {
-                    title: 'Good Enough',
-                    type: 'standalone',
-                    description: 'Craft Cocktails & Tapas',
-                    instagram: 'https://www.instagram.com/goodenoughcocktailclub/',
-                    website: 'https://goodenoughsd.com/',
-                    logo: 'assets/logos/goodenough.png',
-                    address: '555 W Date St, Suite B, San Diego, CA'
-                },
-                {
-                    title: 'Global Fork',
-                    type: 'foodhall',
-                    description: 'Food Hall',
-                    concepts: [],
-                    website: 'https://globalforkfh.com/',
-                    logo: 'assets/logos/GLOBAL FORK BADGE SDCA black.png',
-                    address: '550 W. Date Street Suite A, San Diego, CA 92101'
-                }
-            ]
+            id: 'globalfork', name: 'Global Fork', type: 'foodhall',
+            coords: [32.7205, -117.1690],
+            address: '550 W. Date Street Suite A, San Diego, CA 92101',
+            website: 'https://globalforkfh.com/',
+            logo: 'assets/logos/GLOBAL FORK BADGE SDCA black.png',
+            brands: ['lobsterlab', 'cosmos', 'lavida']
         },
         {
-            // La Jolla - UC San Diego (single location)
+            id: 'goodenough', name: 'Good Enough', type: 'standalone',
+            coords: [32.7192, -117.1704],
+            address: '555 W Date St, Suite B, San Diego, CA',
+            instagram: 'https://www.instagram.com/goodenoughcocktailclub/',
+            brands: ['goodenough']
+        },
+        {
+            id: 'station8', name: 'Station 8 Public Market', type: 'foodhall',
+            status: 'Coming Soon',
             coords: [32.8715, -117.2460],
-            groupName: 'La Jolla',
             address: '9145 Scholars Drive South, La Jolla, CA 92037',
-            locations: [
-                {
-                    title: 'Station 8 Public Market',
-                    type: 'foodhall',
-                    description: 'Food Hall',
-                    concepts: [],
-                    status: 'Coming Soon',
-                    instagram: 'https://www.instagram.com/station8publicmarket/',
-                    logo: 'assets/logos/station8.png'
-                }
-            ]
+            instagram: 'https://www.instagram.com/station8publicmarket/',
+            logo: 'assets/logos/station8.png',
+            brands: ['lobsterlab', 'cosmos', 'lavida']
         },
         {
-            // San Clemente (single location)
+            id: 'miramar', name: 'Miramar Food Hall', type: 'foodhall',
             coords: [33.4267, -117.6112],
-            groupName: 'San Clemente',
             address: '1720 North El Camino Real, San Clemente, CA',
-            locations: [
-                {
-                    title: 'Miramar Food Hall',
-                    type: 'foodhall',
-                    description: 'Food Hall',
-                    concepts: ['Lobster Lab', 'Cosmos Burger', 'La Vida', 'Egg & Out'],
-                    instagram: 'https://www.instagram.com/miramarfoodhall/',
-                    logo: 'assets/logos/miramar.png'
-                }
-            ]
+            instagram: 'https://www.instagram.com/miramarfoodhall/',
+            logo: 'assets/logos/miramar.png',
+            brands: ['lobsterlab', 'cosmos', 'lavida', 'eggout']
+        },
+        {
+            id: 'skydeck', name: 'Sky Deck', type: 'foodhall', vendor: true,
+            coords: [32.9563, -117.2317],
+            address: '12841 El Camino Real Ste 206, San Diego, CA 92130',
+            brands: ['lobsterlab']
         }
     ];
+
+    // Concepts and food halls that appear in the filter panel (order = display order).
+    const CONCEPT_KEYS = ['lobsterlab', 'cosmos', 'lavida', 'eggout', 'goodenough'];
+    // Only Tiger's OWN food halls are filterable venues. Windmill & Sky Deck are
+    // third-party halls where Tiger brands are vendors — governed by the concept filters.
+    const FILTER_VENUE_IDS = ['miramar', 'globalfork', 'station8'];
 
     // Helper function to create single logo icon
     function createLogoIcon(logo, title, size) {
@@ -596,104 +569,216 @@ function initMap() {
         }
     }
 
-    // Add markers for each location group
-    locationGroups.forEach(group => {
-        const locationCount = group.locations.length;
-        const size = 40;
-        const gap = 4;
+    const MARKER_SIZE = 40;
+    const MARKER_GAP = 4;
 
-        let iconHtml;
-        let iconWidth;
+    // Build a marker icon: brand-logo badges side by side, with the food hall's
+    // own logo stamped beneath the row when the venue has one (multi-brand pills only).
+    function buildVenueIcon(venue, brandKeys) {
+        const size = MARKER_SIZE;
+        const gap = MARKER_GAP;
+        const count = brandKeys.length;
+        const logosHtml = brandKeys.map(k => createLogoIcon(BRANDS[k].logo, BRANDS[k].name, size)).join('');
 
-        if (locationCount === 1) {
-            // Single location - simple circular icon
-            const loc = group.locations[0];
-            iconHtml = createLogoIcon(loc.logo, loc.title, size);
-            iconWidth = size;
-        } else {
-            // Multiple locations - display side by side in a frame
-            const logosHtml = group.locations.map(loc => createLogoIcon(loc.logo, loc.title, size)).join('');
-            iconWidth = (size * locationCount) + (gap * (locationCount - 1)) + 16;
-            iconHtml = `<div style="display: flex; align-items: center; gap: ${gap}px; background: rgba(255,255,255,0.95); padding: 8px; border-radius: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 2px solid #c9a961;">
-                ${logosHtml}
-            </div>`;
+        // Single badge — no surrounding pill, no hall logo.
+        if (count <= 1) {
+            return L.divIcon({
+                className: 'custom-marker-logo',
+                html: logosHtml,
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2],
+                popupAnchor: [0, -(size / 2) - 12]
+            });
         }
 
-        const customIcon = L.divIcon({
+        // Multi-brand pill — stamp the food hall's logo underneath the badges.
+        const rowWidth = (size * count) + (gap * (count - 1));
+        const hasHallLogo = !!venue.logo;
+        // Inline !important is required: Leaflet's stylesheet forces
+        // `.leaflet-container img { max-width/max-height: none !important }`, which
+        // would otherwise blow these logos up to natural size.
+        const hallLogoHtml = hasHallLogo
+            ? `<img src="${venue.logo}" alt="${venue.name}" style="max-width: ${rowWidth}px !important; max-height: 24px !important; width: auto !important; height: auto !important; object-fit: contain; margin-top: 5px;">`
+            : '';
+        const hallLogoH = hasHallLogo ? 29 : 0; // 24px logo + 5px margin
+
+        const iconWidth = rowWidth + 16;
+        const iconHeight = size + 16 + hallLogoH;
+        const iconHtml = `<div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.95); padding: 8px; border-radius: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 2px solid #c9a961;">
+            <div style="display: flex; align-items: center; gap: ${gap}px;">${logosHtml}</div>
+            ${hallLogoHtml}
+        </div>`;
+
+        return L.divIcon({
             className: 'custom-marker-logo',
             html: iconHtml,
-            iconSize: [iconWidth, size + (locationCount > 1 ? 16 : 0)],
-            iconAnchor: [iconWidth/2, (size + (locationCount > 1 ? 16 : 0))/2],
-            popupAnchor: [0, -(size/2) - 12]
+            iconSize: [iconWidth, iconHeight],
+            iconAnchor: [iconWidth / 2, iconHeight / 2],
+            popupAnchor: [0, -(iconHeight / 2) - 4]
         });
+    }
 
-        const marker = L.marker(group.coords, { icon: customIcon }).addTo(map);
+    const WEB_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" /></svg>`;
+    const IG_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" /></svg>`;
+    const PIN_ICON = `<svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 24 24"><path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" /></svg>`;
 
-        // Build compact popup content for the group
-        let popupContent = `<div style="font-family: 'Montserrat', sans-serif; min-width: 220px;">`;
+    // Build the popup for a venue, listing only the currently-visible brands.
+    function buildPopup(venue, brandKeys) {
+        const statusBadge = venue.status ? `<span style="background: #f0ad4e; color: white; padding: 1px 5px; border-radius: 3px; font-size: 9px; margin-left: 4px;">${venue.status}</span>` : '';
+        const links = `
+            ${venue.website ? `<a href="${venue.website}" target="_blank" rel="noopener" style="color: #c9a961; text-decoration: none; display: flex;" title="Website" aria-label="${venue.name} website">${WEB_ICON}</a>` : ''}
+            ${venue.instagram ? `<a href="${venue.instagram}" target="_blank" rel="noopener" style="color: #c9a961; text-decoration: none; display: flex;" title="Instagram" aria-label="${venue.name} Instagram">${IG_ICON}</a>` : ''}`;
 
-        if (locationCount > 1) {
-            popupContent += `<div style="margin: 0 0 8px 0; font-family: 'Playfair Display', serif; color: #c9a961; font-size: 14px; border-bottom: 1px solid #c9a961; padding-bottom: 6px;">${group.groupName}</div>`;
+        // Vendor locations (Tiger brands inside a third-party food hall): lead with the
+        // brand names; mention the host venue only as a small, muted footnote — never
+        // brand it like one of Tiger's own halls.
+        let heading, extraLine;
+        if (venue.vendor) {
+            heading = brandKeys.map(k => BRANDS[k].name).join(' · ');
+            extraLine = `<div style="margin-top: 5px; font-size: 9px; color: #999; font-style: italic;">at ${venue.name}</div>`;
+        } else {
+            heading = venue.name;
+            extraLine = brandKeys.length > 1
+                ? `<div style="margin-top: 4px; font-size: 9px; color: #888;">${brandKeys.map(k => BRANDS[k].name).join(' • ')}</div>`
+                : '';
         }
 
-        group.locations.forEach((location, index) => {
-            const isFoodHall = location.type === 'foodhall';
-            const statusBadge = location.status ? `<span style="background: #f0ad4e; color: white; padding: 1px 5px; border-radius: 3px; font-size: 9px; margin-left: 4px;">${location.status}</span>` : '';
-            const locationAddress = location.address || group.address;
+        return `<div style="font-family: 'Montserrat', sans-serif; min-width: 220px;">
+            <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 3px;">
+                <span style="font-family: 'Playfair Display', serif; color: #333; font-size: 14px; font-weight: 600;">${heading}${statusBadge}</span>
+                <div style="display: flex; gap: 6px; align-items: center;">${links}</div>
+            </div>
+            <div style="display: flex; align-items: center; gap: 4px;">
+                <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(venue.address)}" target="_blank" rel="noopener" style="color: #c9a961; text-decoration: none; display: flex;" title="Get Directions" aria-label="Directions to ${venue.name}">${PIN_ICON}</a>
+                <span style="font-size: 10px; color: #666;">${venue.address}</span>
+            </div>
+            ${extraLine}
+        </div>`;
+    }
 
-            if (index > 0) {
-                popupContent += `<div style="border-top: 1px solid rgba(201, 169, 97, 0.2); margin: 6px 0;"></div>`;
-            }
-
-            popupContent += `
-                <div style="margin-bottom: 4px;">
-                    <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 2px;">
-                        <span style="font-family: 'Playfair Display', serif; color: #333; font-size: 13px; font-weight: 600;">${location.title}${statusBadge}</span>
-                        <div style="display: flex; gap: 6px; align-items: center;">
-                            ${location.website ? `
-                                <a href="${location.website}" target="_blank" style="color: #c9a961; text-decoration: none; display: flex;" title="Website">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M16.36,14C16.44,13.34 16.5,12.68 16.5,12C16.5,11.32 16.44,10.66 16.36,10H19.74C19.9,10.64 20,11.31 20,12C20,12.69 19.9,13.36 19.74,14M14.59,19.56C15.19,18.45 15.65,17.25 15.97,16H18.92C17.96,17.65 16.43,18.93 14.59,19.56M14.34,14H9.66C9.56,13.34 9.5,12.68 9.5,12C9.5,11.32 9.56,10.65 9.66,10H14.34C14.43,10.65 14.5,11.32 14.5,12C14.5,12.68 14.43,13.34 14.34,14M12,19.96C11.17,18.76 10.5,17.43 10.09,16H13.91C13.5,17.43 12.83,18.76 12,19.96M8,8H5.08C6.03,6.34 7.57,5.06 9.4,4.44C8.8,5.55 8.35,6.75 8,8M5.08,16H8C8.35,17.25 8.8,18.45 9.4,19.56C7.57,18.93 6.03,17.65 5.08,16M4.26,14C4.1,13.36 4,12.69 4,12C4,11.31 4.1,10.64 4.26,10H7.64C7.56,10.66 7.5,11.32 7.5,12C7.5,12.68 7.56,13.34 7.64,14M12,4.03C12.83,5.23 13.5,6.57 13.91,8H10.09C10.5,6.57 11.17,5.23 12,4.03M18.92,8H15.97C15.65,6.75 15.19,5.55 14.59,4.44C16.43,5.07 17.96,6.34 18.92,8M12,2C6.47,2 2,6.5 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12A10,10 0 0,0 12,2Z" />
-                                    </svg>
-                                </a>
-                            ` : ''}
-                            ${location.instagram ? `
-                                <a href="${location.instagram}" target="_blank" style="color: #c9a961; text-decoration: none; display: flex;" title="Instagram">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 24 24">
-                                        <path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z" />
-                                    </svg>
-                                </a>
-                            ` : ''}
-                        </div>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 4px;">
-                        <a href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(locationAddress)}" target="_blank" style="color: #c9a961; text-decoration: none; display: flex;" title="Get Directions">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="currentColor" viewBox="0 0 24 24">
-                                <path d="M12,11.5A2.5,2.5 0 0,1 9.5,9A2.5,2.5 0 0,1 12,6.5A2.5,2.5 0 0,1 14.5,9A2.5,2.5 0 0,1 12,11.5M12,2A7,7 0 0,0 5,9C5,14.25 12,22 12,22C12,22 19,14.25 19,9A7,7 0 0,0 12,2Z" />
-                            </svg>
-                        </a>
-                        <span style="font-size: 10px; color: #666;">${locationAddress}</span>
-                    </div>
-                    ${isFoodHall && location.concepts && location.concepts.length > 0 ? `
-                        <div style="margin-top: 3px; font-size: 9px; color: #888;">${location.concepts.join(' • ')}</div>
-                    ` : ''}
-                </div>
-            `;
-        });
-
-        popupContent += `</div>`;
-
-        marker.bindPopup(popupContent, { maxWidth: 280 });
-
-        // Open popup on hover
-        marker.on('mouseover', function() {
-            this.openPopup();
-        });
+    // Create one marker per venue and keep a reference so the filter can toggle it.
+    const venueMarkers = {};
+    VENUES.forEach(venue => {
+        const marker = L.marker(venue.coords, { icon: buildVenueIcon(venue, venue.brands) });
+        marker.bindPopup(buildPopup(venue, venue.brands), { maxWidth: 280 });
+        marker.on('mouseover', function () { this.openPopup(); });
+        marker.addTo(map);
+        venueMarkers[venue.id] = { marker, venue };
     });
 
-    // Fit map to show all markers
-    const group = L.featureGroup(locationGroups.map(g => L.marker(g.coords)));
-    map.fitBounds(group.getBounds().pad(0.1));
+    // ----- Filter state + application -----
+    const activeConcepts = new Set(CONCEPT_KEYS);
+    const activeVenues = new Set(FILTER_VENUE_IDS);
+    let onlyVenue = null; // food-hall isolate: when set, show ONLY that venue's pin
+
+    function fitToVisible() {
+        const shown = Object.values(venueMarkers)
+            .filter(rec => map.hasLayer(rec.marker))
+            .map(rec => L.marker(rec.venue.coords));
+        if (shown.length) {
+            map.fitBounds(L.featureGroup(shown).getBounds().pad(0.15));
+        }
+    }
+
+    function applyFilter(refit) {
+        VENUES.forEach(venue => {
+            const rec = venueMarkers[venue.id];
+            const visibleBrands = venue.brands.filter(k => activeConcepts.has(k));
+            const venueAllowed = !FILTER_VENUE_IDS.includes(venue.id) || activeVenues.has(venue.id);
+            // Food-hall isolate trumps everything: show just that one pin (all its brands).
+            const show = onlyVenue
+                ? (venue.id === onlyVenue)
+                : (visibleBrands.length > 0 && venueAllowed);
+
+            if (show) {
+                rec.marker.setIcon(buildVenueIcon(venue, visibleBrands));
+                rec.marker.setPopupContent(buildPopup(venue, visibleBrands));
+                if (!map.hasLayer(rec.marker)) rec.marker.addTo(map);
+            } else if (map.hasLayer(rec.marker)) {
+                map.removeLayer(rec.marker);
+            }
+        });
+        if (refit) fitToVisible();
+    }
+
+    // ----- Wire up the filter panel controls -----
+    function syncCheckboxes() {
+        document.querySelectorAll('.map-filter input[data-concept]').forEach(cb => {
+            cb.checked = activeConcepts.has(cb.dataset.concept);
+        });
+        document.querySelectorAll('.map-filter input[data-venue]').forEach(cb => {
+            cb.checked = activeVenues.has(cb.dataset.venue);
+        });
+    }
+
+    const filterPanel = document.querySelector('.map-filter');
+    if (filterPanel) {
+        // Checkbox: toggle a single concept/venue
+        filterPanel.querySelectorAll('input[data-concept]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                onlyVenue = null;
+                if (cb.checked) activeConcepts.add(cb.dataset.concept);
+                else activeConcepts.delete(cb.dataset.concept);
+                applyFilter(false);
+            });
+        });
+        filterPanel.querySelectorAll('input[data-venue]').forEach(cb => {
+            cb.addEventListener('change', () => {
+                onlyVenue = null;
+                if (cb.checked) activeVenues.add(cb.dataset.venue);
+                else activeVenues.delete(cb.dataset.venue);
+                applyFilter(false);
+            });
+        });
+        // Click a name: isolate that one (and reset the other group to all)
+        filterPanel.querySelectorAll('[data-isolate-concept]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                onlyVenue = null;
+                activeConcepts.clear();
+                activeConcepts.add(btn.dataset.isolateConcept);
+                activeVenues.clear();
+                FILTER_VENUE_IDS.forEach(id => activeVenues.add(id));
+                syncCheckboxes();
+                applyFilter(true);
+            });
+        });
+        filterPanel.querySelectorAll('[data-isolate-venue]').forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Show ONLY this food hall — hide every other pin (vendors/standalones too).
+                onlyVenue = btn.dataset.isolateVenue;
+                activeVenues.clear();
+                activeVenues.add(btn.dataset.isolateVenue);
+                activeConcepts.clear();
+                CONCEPT_KEYS.forEach(k => activeConcepts.add(k));
+                syncCheckboxes();
+                applyFilter(true);
+            });
+        });
+        // Show all
+        const showAllBtn = filterPanel.querySelector('[data-show-all]');
+        if (showAllBtn) {
+            showAllBtn.addEventListener('click', () => {
+                onlyVenue = null;
+                activeConcepts.clear();
+                CONCEPT_KEYS.forEach(k => activeConcepts.add(k));
+                activeVenues.clear();
+                FILTER_VENUE_IDS.forEach(id => activeVenues.add(id));
+                syncCheckboxes();
+                applyFilter(true);
+            });
+        }
+        // Mobile collapse toggle
+        const toggle = filterPanel.querySelector('.map-filter-toggle');
+        if (toggle) {
+            toggle.addEventListener('click', () => {
+                const expanded = filterPanel.classList.toggle('is-open');
+                toggle.setAttribute('aria-expanded', expanded ? 'true' : 'false');
+            });
+        }
+    }
+
+    // Fit map to show all markers initially
+    fitToVisible();
 }
 
 // Initialize map on page load
