@@ -2,6 +2,22 @@
 
 Self-improvement log. Each entry is a correction from Kazim, codified so it sticks.
 
+## 2026-07-28 · Keep the homepage stat counters in sync with real locations/concepts
+
+The About section has animated stat counters (`index.html`, `.stats-grid`, `data-target` +
+a site-wide "+" suffix from the counter JS). Two of them track live facts:
+- **Locations** = the count of distinct venues on the map (`js/main.js` `VENUES`). As of
+  2026-07-28 that's **7** (Windmill/Carlsbad, Cosmos Oceanside, Global Fork, Good Enough,
+  Station 8/Coming Soon, Miramar, Sky Deck) — was wrongly "8".
+- **Unique Concepts** = the 5 culinary brands (Lobster Lab, Cosmos, La Vida, Good Enough,
+  Egg & Out).
+
+**Standing rule from Kazim:** whenever a location (or concept) is added/removed — a new
+`VENUES` entry, a new concept card, etc. — **update the matching `data-target` in
+`.stats-grid` AND explicitly tell Kazim** you did it. Treat it as a self-check on every
+location/concept change; don't let the counter drift. (Team Members / Monthly Guests are
+marketing figures — leave those alone.)
+
 ## 2026-07-10 · Leaflet forces `img { max-width/max-height: none !important }`
 
 When putting an `<img>` inside a Leaflet `divIcon` (e.g. a food-hall logo under the marker

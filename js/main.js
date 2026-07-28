@@ -514,7 +514,8 @@ function initMap() {
             coords: [32.7205, -117.1690],
             address: '550 W. Date Street Suite A, San Diego, CA 92101',
             website: 'https://globalforkfh.com/',
-            logo: 'assets/logos/GLOBAL FORK BADGE SDCA black.png',
+            hallLabel: 'GLOBAL FORK',
+            hallLogo: 'assets/logos/GLOBAL FORK BADGE SDCA black.png',
             brands: ['lobsterlab', 'cosmos', 'lavida']
         },
         {
@@ -530,7 +531,8 @@ function initMap() {
             coords: [32.8715, -117.2460],
             address: '9145 Scholars Drive South, La Jolla, CA 92037',
             instagram: 'https://www.instagram.com/station8publicmarket/',
-            logo: 'assets/logos/station8.png',
+            hallLabel: 'STATION 8',
+            hallLogo: 'assets/logos/station8.png',
             brands: ['lobsterlab', 'cosmos', 'lavida']
         },
         {
@@ -591,22 +593,29 @@ function initMap() {
             });
         }
 
-        // Multi-brand pill — stamp the food hall's logo underneath the badges.
+        // Under the badge row: the food hall's wordmark image if it has one,
+        // otherwise a styled text label of its name (for halls without a wordmark asset).
         const rowWidth = (size * count) + (gap * (count - 1));
-        const hasHallLogo = !!venue.logo;
-        // Inline !important is required: Leaflet's stylesheet forces
-        // `.leaflet-container img { max-width/max-height: none !important }`, which
-        // would otherwise blow these logos up to natural size.
-        const hallLogoHtml = hasHallLogo
-            ? `<img src="${venue.logo}" alt="${venue.name}" style="max-width: ${rowWidth}px !important; max-height: 24px !important; width: auto !important; height: auto !important; object-fit: contain; margin-top: 5px;">`
-            : '';
-        const hallLogoH = hasHallLogo ? 29 : 0; // 24px logo + 5px margin
+        let hallHtml = '';
+        let hallH = 0;
+        if (venue.logo) {
+            // Inline !important beats Leaflet's `.leaflet-container img { max-*: none !important }`.
+            hallHtml = `<img src="${venue.logo}" alt="${venue.name}" style="max-width: ${rowWidth}px !important; max-height: 24px !important; width: auto !important; height: auto !important; object-fit: contain; margin-top: 5px;">`;
+            hallH = 29;
+        } else if (venue.hallLabel) {
+            // Logo (if any) + name, laid out as a centred lockup under the badges.
+            const hallLogoImg = venue.hallLogo
+                ? `<img src="${venue.hallLogo}" alt="" style="height: 22px !important; max-height: 22px !important; width: auto !important; max-width: 28px !important; object-fit: contain;">`
+                : '';
+            hallHtml = `<div style="display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 5px;">${hallLogoImg}<span style="font-family: 'Bebas Neue', sans-serif; font-size: 13px; letter-spacing: 1.5px; color: #1a1a1a; line-height: 1; white-space: nowrap;">${venue.hallLabel}</span></div>`;
+            hallH = 26;
+        }
 
         const iconWidth = rowWidth + 16;
-        const iconHeight = size + 16 + hallLogoH;
+        const iconHeight = size + 16 + hallH;
         const iconHtml = `<div style="display: flex; flex-direction: column; align-items: center; background: rgba(255,255,255,0.95); padding: 8px; border-radius: 24px; box-shadow: 0 4px 15px rgba(0,0,0,0.3); border: 2px solid #c9a961;">
             <div style="display: flex; align-items: center; gap: ${gap}px;">${logosHtml}</div>
-            ${hallLogoHtml}
+            ${hallHtml}
         </div>`;
 
         return L.divIcon({
@@ -657,13 +666,14 @@ function initMap() {
     }
 
     // Create one marker per venue and keep a reference so the filter can toggle it.
+    // `line` holds the leader line drawn when a pin is nudged off its true spot.
     const venueMarkers = {};
     VENUES.forEach(venue => {
         const marker = L.marker(venue.coords, { icon: buildVenueIcon(venue, venue.brands) });
         marker.bindPopup(buildPopup(venue, venue.brands), { maxWidth: 280 });
         marker.on('mouseover', function () { this.openPopup(); });
         marker.addTo(map);
-        venueMarkers[venue.id] = { marker, venue };
+        venueMarkers[venue.id] = { marker, venue, line: null, dot: null };
     });
 
     // ----- Filter state + application -----
@@ -672,12 +682,73 @@ function initMap() {
     let onlyVenue = null; // food-hall isolate: when set, show ONLY that venue's pin
 
     function fitToVisible() {
-        const shown = Object.values(venueMarkers)
+        const coords = Object.values(venueMarkers)
             .filter(rec => map.hasLayer(rec.marker))
-            .map(rec => L.marker(rec.venue.coords));
-        if (shown.length) {
-            map.fitBounds(L.featureGroup(shown).getBounds().pad(0.15));
+            .map(rec => rec.venue.coords);
+        if (coords.length) {
+            map.fitBounds(L.latLngBounds(coords).pad(0.15), { maxZoom: 15 });
         }
+    }
+
+    // Declutter: nudge overlapping pins side by side (around their shared centre) and
+    // draw a thin gold leader line from each nudged pin back to its true spot. Runs on
+    // zoom (overlaps are zoom-dependent) — zoom in and pins settle onto their real
+    // locations with no lines. Panning doesn't change overlaps, so it isn't rebound.
+    function declutter() {
+        const visible = Object.values(venueMarkers).filter(rec => map.hasLayer(rec.marker));
+        // Reset everyone to their true spot and clear old dots + leader lines first.
+        visible.forEach(rec => {
+            rec.marker.setLatLng(rec.venue.coords);
+            if (rec.line) { map.removeLayer(rec.line); rec.line = null; }
+            if (rec.dot) { map.removeLayer(rec.dot); rec.dot = null; }
+        });
+
+        const items = visible.map(rec => {
+            const sz = rec.marker.options.icon.options.iconSize; // [w, h]
+            const p = map.latLngToContainerPoint(rec.venue.coords);
+            return { rec, w: sz[0], h: sz[1], x: p.x, y: p.y };
+        });
+
+        // Union-find: group pins whose boxes overlap (with a small gap margin).
+        const parent = items.map((_, i) => i);
+        const find = i => { while (parent[i] !== i) { parent[i] = parent[parent[i]]; i = parent[i]; } return i; };
+        for (let i = 0; i < items.length; i++) {
+            for (let j = i + 1; j < items.length; j++) {
+                const a = items[i], b = items[j];
+                if (Math.abs(a.x - b.x) < (a.w + b.w) / 2 + 8 &&
+                    Math.abs(a.y - b.y) < (a.h + b.h) / 2 + 8) {
+                    parent[find(i)] = find(j);
+                }
+            }
+        }
+        const groups = {};
+        items.forEach((it, i) => { const r = find(i); (groups[r] = groups[r] || []).push(it); });
+
+        // For each overlapping group: lay the pills in a row just BELOW the pins' true
+        // spots, drop a gold dot on each true spot, and connect pill -> dot with a line.
+        Object.values(groups).forEach(group => {
+            if (group.length < 2) return;
+            group.sort((a, b) => a.x - b.x);
+            const gap = 14;
+            const totalW = group.reduce((s, it) => s + it.w, 0) + gap * (group.length - 1);
+            const maxH = Math.max.apply(null, group.map(it => it.h));
+            const cx = group.reduce((s, it) => s + it.x, 0) / group.length;
+            const maxY = Math.max.apply(null, group.map(it => it.y));
+            const rowY = maxY + maxH / 2 + 24; // pill-centre line, below the lowest true spot
+            let cursor = cx - totalW / 2;
+            group.forEach(it => {
+                const px = cursor + it.w / 2;
+                cursor += it.w + gap;
+                it.rec.marker.setLatLng(map.containerPointToLatLng([px, rowY]));
+                it.rec.dot = L.circleMarker(it.rec.venue.coords, {
+                    radius: 5, color: '#fff', weight: 2, fillColor: '#c9a961', fillOpacity: 1, interactive: false
+                }).addTo(map);
+                const pillTop = map.containerPointToLatLng([px, rowY - it.h / 2]);
+                it.rec.line = L.polyline([it.rec.venue.coords, pillTop], {
+                    color: '#c9a961', weight: 2, opacity: 0.85, interactive: false
+                }).addTo(map);
+            });
+        });
     }
 
     function applyFilter(refit) {
@@ -693,11 +764,17 @@ function initMap() {
             if (show) {
                 rec.marker.setIcon(buildVenueIcon(venue, visibleBrands));
                 rec.marker.setPopupContent(buildPopup(venue, visibleBrands));
-                if (!map.hasLayer(rec.marker)) rec.marker.addTo(map);
+                if (!map.hasLayer(rec.marker)) {
+                    rec.marker.setLatLng(venue.coords);
+                    rec.marker.addTo(map);
+                }
             } else if (map.hasLayer(rec.marker)) {
                 map.removeLayer(rec.marker);
+                if (rec.line) { map.removeLayer(rec.line); rec.line = null; }
+                if (rec.dot) { map.removeLayer(rec.dot); rec.dot = null; }
             }
         });
+        declutter();
         if (refit) fitToVisible();
     }
 
@@ -777,8 +854,12 @@ function initMap() {
         }
     }
 
-    // Fit map to show all markers initially
+    // Re-declutter whenever the zoom changes (overlaps are zoom-dependent).
+    map.on('zoomend', declutter);
+
+    // Fit map to show all markers initially, then declutter at that zoom.
     fitToVisible();
+    declutter();
 }
 
 // Initialize map on page load
